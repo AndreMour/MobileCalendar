@@ -1,10 +1,11 @@
 import React from 'react';
+import { Image, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
-import DaysOfCoffe from '../DaysOfCoffe';
-import { ListIcon, Close, ImageView, CloseView } from './styles';
+import { ListIcon, Close, ImageView, CloseView, CalendarIcon, CoffeIcon, SortIcon } from './styles';
 import Calendar from '../Calendar';
-import { Image } from 'react-native';
+import DaysOfCoffe from '../DaysOfCoffe';
+import SortGroups from '../SortGroups';
 
 const Drawer = createDrawerNavigator();
 
@@ -33,7 +34,14 @@ const SideBar = () => {
   return (
     <NavigationContainer>
       <Drawer.Navigator
-        drawerContent={props => <CustomDrawerHeader {...props} />}
+        drawerContent={props => (
+          <>
+            <CustomDrawerHeader {...props} />
+            <DrawerContentScrollView {...props}>
+              <DrawerItemList {...props} />
+            </DrawerContentScrollView>
+          </>
+        )}
 
         screenOptions={{
           drawerStyle: {
@@ -43,44 +51,66 @@ const SideBar = () => {
             backgroundColor: "#fff"
           },
           headerTintColor: "#000000",
+          // headerShown: false,
           headerTintStyle: {
+
             fontWeight: "bold"
           },
           drawerActiveTintColor: "#313131",
           drawerLabelStyle: {
             color: "#111",
+            fontSize: 14,
+            marginLeft: -10
           }
         }}
       >
         <Drawer.Screen
-          name='Calendário de Limpeza'
+          name='Cleaning Calendar'
           options={{
-            drawerLabel: "Calendário de Limpeza",
+            drawerLabel: "Calendário de limpeza",
             title: "Calendário de Limpeza",
+            headerShadowVisible: false,
             headerTitleAlign: 'center',
             headerTitleStyle: {
               fontSize: 16,
               fontFamily: 'Montserrat-SemiBold',
             },
             drawerIcon: () => (
-              <ListIcon name="List" size={24} marginLeft={16} color="#fff" />
+              <CalendarIcon name="calendar" size={16} marginLeft={16} color="#000" />
             )
           }}
           component={Calendar}
         />
 
         <Drawer.Screen
-          name='DaysOfCoffe'
+          name='SortGroups'
           options={{
-            drawerLabel: "Dias do Café",
-            title: "Dias do Café",
+            drawerLabel: "Sorteador de duplas",
+            title: "Sorteador de duplas",
             headerTitleAlign: 'center',
             headerTitleStyle: {
-              fontSize: 16,
+              fontSize: 12,
               fontFamily: 'Montserrat-SemiBold',
             },
             drawerIcon: () => (
-              <ListIcon name="List" size={24} marginLeft={16} color="#fff" />
+              <SortIcon name="drawer" size={24} marginLeft={16} color="#000" />
+            )
+          }}
+          component={SortGroups}
+        />
+
+        <Drawer.Screen
+          name='DaysOfCoffe'
+          options={{
+            drawerLabel: "Dias do café",
+            title: "Dias do Café",
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+              fontSize: 12,
+              fontFamily: 'Montserrat-SemiBold',
+            },
+            drawerIcon: () => (
+              <CoffeIcon name="coffeescript" size={24} marginLeft={16} color="#000" />
             )
           }}
           component={DaysOfCoffe}
