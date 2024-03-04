@@ -1,8 +1,6 @@
 import styled from 'styled-components/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
-import Fontisto from 'react-native-vector-icons/Fontisto';
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 
 export const ImageView = styled.View`
   align-items: center;
@@ -25,9 +23,9 @@ export const ListIcon = styled(Feather)`
 export const CalendarIcon = styled(Feather)`
   font-size: 20;
 `
-export const CoffeIcon = styled(Fontisto)`
+export const CoffeIcon = styled(Feather)`
   font-size: 20;
 `
-export const SortIcon = styled(SimpleLineIcons)`
+export const SortIcon = styled(AntDesign)`
   font-size: 20;
 `

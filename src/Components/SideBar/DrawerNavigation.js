@@ -76,7 +76,7 @@ const SideBar = () => {
               fontFamily: 'Montserrat-SemiBold',
             },
             drawerIcon: () => (
-              <CalendarIcon name="calendar" size={16} marginLeft={16} color="#000" />
+              <CalendarIcon name="calendar" color="#000" />
             )
           }}
           component={Calendar}
@@ -93,7 +93,7 @@ const SideBar = () => {
               fontFamily: 'Montserrat-SemiBold',
             },
             drawerIcon: () => (
-              <SortIcon name="drawer" size={24} marginLeft={16} color="#000" />
+              <SortIcon name="addusergroup" color="#000" />
             )
           }}
           component={SortGroups}
@@ -110,7 +110,7 @@ const SideBar = () => {
               fontFamily: 'Montserrat-SemiBold',
             },
             drawerIcon: () => (
-              <CoffeIcon name="coffeescript" size={24} marginLeft={16} color="#000" />
+              <CoffeIcon name="coffee" color="#000" />
             )
           }}
           component={DaysOfCoffe}
