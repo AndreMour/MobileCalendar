@@ -106,7 +106,7 @@ const SideBar = () => {
             title: "Dias do Café",
             headerTitleAlign: 'center',
             headerTitleStyle: {
-              fontSize: 12,
+              fontSize: 16,
               fontFamily: 'Montserrat-SemiBold',
             },
             drawerIcon: () => (
