@@ -1,11 +1,10 @@
-import React from 'react';
-import { Image, Text } from 'react-native';
+import React, { useState } from 'react';
+import { Image, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
-import { ListIcon, Close, ImageView, CloseView, CalendarIcon, CoffeIcon, SortIcon } from './styles';
-import Calendar from '../Calendar';
-import DaysOfCoffe from '../DaysOfCoffe';
-import SortGroups from '../SortGroups';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+import { Close, ImageView, CloseView, CalendarIcon, CoffeIcon, SortIcon } from './styles';
+import Calendar from '../../Pages/Calendar';
+import DaysOfCoffe from '../../Screens/DaysOfCoffe';
 
 const Drawer = createDrawerNavigator();
 
@@ -22,7 +21,7 @@ const CustomDrawerHeader = ({ navigation }) => {
       <ImageView>
         <Image
           source={require('../assets/Images/LogoSmart.png')}
-          style={{ width: 150, height: 73.54, }}
+          style={{ width: 150, height: 73.54 }}
           resizeMode="cover"
         />
       </ImageView>
@@ -30,14 +29,17 @@ const CustomDrawerHeader = ({ navigation }) => {
   );
 };
 
-const SideBar = () => {
+
+const SideBar = ({ navigation }) => {
+  const [isModalVisible, setModalVisible] = useState(false);
+
   return (
     <NavigationContainer>
       <Drawer.Navigator
         drawerContent={props => (
           <>
             <CustomDrawerHeader {...props} />
-            <DrawerContentScrollView {...props}>
+            <DrawerContentScrollView {...props} style={styles.drawerContent}>
               <DrawerItemList {...props} />
             </DrawerContentScrollView>
           </>
@@ -51,21 +53,22 @@ const SideBar = () => {
             backgroundColor: "#fff"
           },
           headerTintColor: "#000000",
-          // headerShown: false,
+          headerShown: false,
           headerTintStyle: {
-
             fontWeight: "bold"
           },
           drawerActiveTintColor: "#313131",
           drawerLabelStyle: {
-            color: "#111",
-            fontSize: 14,
+            color: "#0F0F0F",
+            fontFamily: 'Montserrat-SemiBold',
+            fontSize: 12,
             marginLeft: -10
           }
         }}
       >
         <Drawer.Screen
           name='Cleaning Calendar'
+          component={() => <Calendar />}
           options={{
             drawerLabel: "Calendário de limpeza",
             title: "Calendário de Limpeza",
@@ -75,32 +78,18 @@ const SideBar = () => {
               fontSize: 16,
               fontFamily: 'Montserrat-SemiBold',
             },
+            headerRight: () => (
+              <SortIcon name="sort-calendar-descending" onPress={() => setModalVisible(true)} />
+            ),
             drawerIcon: () => (
               <CalendarIcon name="calendar" color="#000" />
             )
           }}
-          component={Calendar}
-        />
-
-        <Drawer.Screen
-          name='SortGroups'
-          options={{
-            drawerLabel: "Sorteador de duplas",
-            title: "Sorteador de duplas",
-            headerTitleAlign: 'center',
-            headerTitleStyle: {
-              fontSize: 12,
-              fontFamily: 'Montserrat-SemiBold',
-            },
-            drawerIcon: () => (
-              <SortIcon name="addusergroup" color="#000" />
-            )
-          }}
-          component={SortGroups}
         />
 
         <Drawer.Screen
           name='DaysOfCoffe'
+          component={DaysOfCoffe}
           options={{
             drawerLabel: "Dias do café",
             title: "Dias do Café",
@@ -113,12 +102,17 @@ const SideBar = () => {
               <CoffeIcon name="coffee" color="#000" />
             )
           }}
-          component={DaysOfCoffe}
         />
 
       </Drawer.Navigator>
-    </NavigationContainer>
-  )
-}
+    </NavigationContainer >
+  );
+};
+
+const styles = StyleSheet.create({
+  drawerContent: {
+    marginTop: -300,
+  }
+});
 
 export default SideBar;
