@@ -62,7 +62,7 @@ export const DaysOfTheMonth = styled.View`
  
 `;
 
-export const Day = styled.View`
+export const Day = styled.TouchableOpacity`
   display: flex;
   flex-direction: row;
   justify-content: center;

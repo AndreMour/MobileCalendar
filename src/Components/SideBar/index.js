@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import { Close, ImageView, CloseView, CalendarIcon, CoffeIcon, SortIcon } from './styles';
 import Calendar from '../../Pages/Calendar';
-import DaysOfCoffe from '../../Screens/DaysOfCoffe';
+import DaysOfCoffe from '../../Pages/DaysOfCoffe';
 
 const Drawer = createDrawerNavigator();
 
@@ -30,8 +30,7 @@ const CustomDrawerHeader = ({ navigation }) => {
 };
 
 
-const SideBar = ({ navigation }) => {
-  const [isModalVisible, setModalVisible] = useState(false);
+const SideBar = () => {
 
   return (
     <NavigationContainer>

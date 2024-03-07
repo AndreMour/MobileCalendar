@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 import Feather from "react-native-vector-icons/Feather";
 
 export const Container = styled.View`
-  background-color: #FFF;
+  background-color: #fff;
   height: 100%;
 `
 export const EditView = styled.View`
@@ -38,7 +38,7 @@ export const DivSex = styled.View`
   height: 125px;
   align-items: center;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 15px;
   background-color: #fff;
 `
 export const WeekDay = styled.Text`
