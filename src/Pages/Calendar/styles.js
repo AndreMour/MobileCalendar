@@ -57,7 +57,7 @@ export const DaysOfTheMonth = styled.View`
   flex-wrap: wrap;
   width: calc(100% - 20px);
   margin: 0 10px;
-  padding-left: 35px;
+  padding-left: 25px;
   justify-content: space-between;
  
 `;
@@ -68,7 +68,7 @@ export const Day = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   color: white;
-  width: calc(100% / 7); 
+  width: 20px;
   height: 80px; 
   padding-bottom: 35px;
 `;

@@ -123,9 +123,10 @@ export default function Calendar() {
                                             isSelected={d === day}
                                             empty={!d}
                                             dayOfWeek={dayOfWeek}
-                                        // onPress={() => setOpenModal(true)}
                                         >
-                                            <DayNumber>{d > 0 ? String(d).padStart(2, '0') : ''}</DayNumber>
+                                            <DayNumber>
+                                                {d > 0 && d <= days[month] ? d : ''}
+                                            </DayNumber>
                                         </Day>
                                     );
                                 })}
