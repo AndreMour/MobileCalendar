@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Modal, View, TouchableOpacity, Text, SafeAreaView } from 'react-native';
 import {
     Body,
     DayWeek,
@@ -10,8 +11,11 @@ import {
     Day,
     DayNumber,
     WeekDay,
-    AlignBody
-} from '../Calendar/styles';
+    AlignBody,
+} from './styles';
+import Sort from './Modal';
+import Header from '../../Components/Header';
+
 
 function getAllFridays(year, startMonth = 0, endMonth = 11) {
     const fridays = [];
@@ -31,7 +35,7 @@ function getAllFridays(year, startMonth = 0, endMonth = 11) {
     return fridays;
 }
 
-export default function Calendar({ fridayGroups }) {
+export default function Calendar(isModalVisible, setModalVisible) {
     const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     const DAYS_OF_THE_WEEK = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
@@ -77,8 +81,15 @@ export default function Calendar({ fridayGroups }) {
 
     const allFridays = getAllFridays(year, 0, 11);
 
+
     return (
+
         <Body>
+            <SafeAreaView>
+                <View>
+                    <Header title={"Calendário de Limpeza"} />
+                </View>
+            </SafeAreaView>
             <Months>
                 <ArrowIcon
                     name="arrow-left"
@@ -121,6 +132,7 @@ export default function Calendar({ fridayGroups }) {
                                             isSelected={d === day}
                                             empty={!d}
                                             dayOfWeek={dayOfWeek}
+                                        // onPress={() => setOpenModal(true)}
                                         >
                                             <DayNumber>{d > 0 ? String(d).padStart(2, '0') : ''}</DayNumber>
                                         </Day>
@@ -129,6 +141,32 @@ export default function Calendar({ fridayGroups }) {
                         </DaysOfTheMonth>
                     ))}
             </AlignBody>
+
+            <View
+                style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+            >
+                <TouchableOpacity
+                    style={{
+                        display: 'flex',
+                        backgroundColor: '#000',
+                        width: 100,
+                        padding: 10,
+                        borderRadius: 8
+                    }} onPress={() => setModalVisible(true)}
+                >
+                    <Text
+                        style={{
+                            color: 'white'
+                        }}
+                    >Open Modal
+                    </Text>
+                </TouchableOpacity>
+            </View>
+
         </Body>
     );
 }
