@@ -69,8 +69,8 @@ export default function DaysOfCoffe() {
 const styles = StyleSheet.create({
   shadow: {
     shadowColor: 'black',
-    shadowOffset: { width: 0, height: -4 },
-    shadowOpacity: 0.4,
+    shadowOffset: { width: 0, height: -12 },
+    shadowOpacity: 1,
     shadowRadius: 4,
     elevation: 5,
   },

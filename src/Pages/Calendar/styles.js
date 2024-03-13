@@ -6,7 +6,7 @@ export const Body = styled.View`
   height: 100%;
   display: flex;
   flex-wrap: wrap;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.body};
 `
 export const Months = styled.View` 
   display: flex;
@@ -20,12 +20,12 @@ export const Month = styled.Text`
   font-family: 'Montserrat-SemiBold';
   font-size: 20px;
   font-weight: 600;
-  color: #0F0F0F;
+  color: white
 `
 export const ArrowIcon = styled(SimpleLineIcons)`
-  color: #0F0F0F;
   font-size: 15px;
   padding: 0 45px 0 45px;
+  color: white
 `
 
 export const DaysOfTheWeek = styled.View`
@@ -47,10 +47,6 @@ export const WeekDay = styled.Text`
   font-weight: 500;
   color: #626262;
 `
-export const AlignBody = styled.View`
-  display: flex;
-`
-
 export const DaysOfTheMonth = styled.View`
   display: flex;
   flex-direction: row;
@@ -60,14 +56,12 @@ export const DaysOfTheMonth = styled.View`
   padding-left: 25px;
   justify-content: space-between;
  
-`;
-
+`
 export const Day = styled.TouchableOpacity`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: white;
   width: 20px;
   height: 80px; 
   padding-bottom: 35px;
@@ -79,7 +73,7 @@ export const DayNumber = styled.Text`
   color: white;
   font-size: 16px;
   font-weight: 500;
-  color: #0F0F0F;
+  color: white
 `;
 
 
@@ -101,5 +95,5 @@ export const Participants = styled.Text`
   font-weight: 500;
   font-size: 16px;
   margin: 10px 35px 10px 0;
-  color: ${(props) => props.theme.text};
+  color: ${({ theme }) => theme.text};
 `

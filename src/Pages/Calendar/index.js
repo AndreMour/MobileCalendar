@@ -3,7 +3,7 @@ import { View, SafeAreaView } from 'react-native';
 import {
     Body, DayWeek, DaysOfTheWeek, Months, Month,
     ArrowIcon, DaysOfTheMonth, Day,
-    DayNumber, WeekDay, AlignBody,
+    DayNumber, WeekDay,
 } from './styles';
 import Header from '../../Components/Header';
 
@@ -72,7 +72,6 @@ export default function Calendar() {
 
     const allFridays = getAllFridays(year, 0, 11);
 
-
     return (
 
         <Body>
@@ -92,47 +91,45 @@ export default function Calendar() {
                     onPress={() => setCurrentDate(new Date(year, month + 1, day))}
                 />
             </Months>
-            <AlignBody>
-                <DaysOfTheWeek>
-                    {DAYS_OF_THE_WEEK.map((d, index) => (
-                        <DayWeek key={index}>
-                            <WeekDay>{d}</WeekDay>
-                        </DayWeek>
-                    ))}
-                </DaysOfTheWeek>
-                {Array(Math.ceil((days[month] + startDay - 1) / 7))
-                    .fill(null)
-                    .map((_, rowIndex) => (
-                        <DaysOfTheMonth
-                            key={rowIndex}
-                            style={{
-                                borderTopWidth: 1,
-                                borderTopColor: "#313131"
-                            }}
-                        >
-                            {Array(7)
-                                .fill(null)
-                                .map((_, colIndex) => {
-                                    const dayIndex = rowIndex * 7 + colIndex + 1 - startDay;
-                                    const d = dayIndex > 0 && dayIndex <= days[month] ? dayIndex : null;
-                                    const dayOfWeek = (colIndex + startDay - 1) % 7;
-                                    return (
-                                        <Day
-                                            key={colIndex}
-                                            isToday={d === today.getDate()}
-                                            isSelected={d === day}
-                                            empty={!d}
-                                            dayOfWeek={dayOfWeek}
-                                        >
-                                            <DayNumber>
-                                                {d > 0 && d <= days[month] ? d : ''}
-                                            </DayNumber>
-                                        </Day>
-                                    );
-                                })}
-                        </DaysOfTheMonth>
-                    ))}
-            </AlignBody>
+            <DaysOfTheWeek>
+                {DAYS_OF_THE_WEEK.map((d, index) => (
+                    <DayWeek key={index}>
+                        <WeekDay>{d}</WeekDay>
+                    </DayWeek>
+                ))}
+            </DaysOfTheWeek>
+            {Array(Math.ceil((days[month] + startDay - 1) / 7))
+                .fill(null)
+                .map((_, rowIndex) => (
+                    <DaysOfTheMonth
+                        key={rowIndex}
+                        style={{
+                            borderTopWidth: 1,
+                            borderTopColor: "#313131"
+                        }}
+                    >
+                        {Array(7)
+                            .fill(null)
+                            .map((_, colIndex) => {
+                                const dayIndex = rowIndex * 7 + colIndex + 1 - startDay;
+                                const d = dayIndex > 0 && dayIndex <= days[month] ? dayIndex : null;
+                                const dayOfWeek = (colIndex + startDay - 1) % 7;
+                                return (
+                                    <Day
+                                        key={colIndex}
+                                        isToday={d === today.getDate()}
+                                        isSelected={d === day}
+                                        empty={!d}
+                                        dayOfWeek={dayOfWeek}
+                                    >
+                                        <DayNumber>
+                                            {d > 0 && d <= days[month] ? d : ''}
+                                        </DayNumber>
+                                    </Day>
+                                );
+                            })}
+                    </DaysOfTheMonth>
+                ))}
         </Body>
     );
 }

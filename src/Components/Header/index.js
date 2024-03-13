@@ -2,15 +2,14 @@ import { View, TouchableOpacity, Modal, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import {
-  Close, Container, Hamburguer,
+  CloseView, Close, Container, Hamburguer,
   Image, ImageView, SortIcon, SortTitle,
   TitleView, Title, InputView, Label, Input,
   Button, ButtonView, AddIcon, ListTitleView,
   TitleList, ListView, CloseListView, NamesView,
   Dot, DeleteName, DotView, DotNameView, SortView,
-  SortButton, TitleButton
+  SortButton, TitleButton, ModalView
 } from './styles';
-import { CloseView } from '../SideBar/styles';
 
 const transparent = 'rgba(0,0,0,0.5)';
 
@@ -32,6 +31,26 @@ const Header = ({ title, onPress }) => {
   const handleDeleteParticipant = (index) => {
     const DeletePartcipants = participants.filter((partcipant, i) => i !== index);
     setParticipants(DeletePartcipants);
+  };
+
+  const generateTeams = (players, numTeams) => {
+    const tempArray = [...players];
+    const shuffledPlayers = tempArray.sort(() => Math.random() - 0.5);
+    const playerPerTeam = Math.floor(tempArray.length / numTeams);
+    const results = [];
+
+    while (shuffledPlayers.length > 0) {
+      results.push(shuffledPlayers.splice(0, playerPerTeam));
+    }
+
+    return results;
+  };
+
+  const sortParticipantsIntoTeams = () => {
+    const numTeams = Math.ceil(participants.length / 2);
+    const teams = generateTeams(participants, numTeams);
+    console.log(teams)
+    return teams;
   };
 
   return (
@@ -56,21 +75,14 @@ const Header = ({ title, onPress }) => {
           backgroundColor: transparent,
           flexDirection: 'column-reverse'
         }}>
-          <View
-            style={{
-              height: 666,
-              borderTopLeftRadius: 20,
-              borderTopRightRadius: 20,
-              backgroundColor: 'white'
-            }}
-          >
+          <ModalView>
             <CloseView>
               <TouchableOpacity onPress={() => setModalVisible(false)}>
                 <Close name='close' />
               </TouchableOpacity>
             </CloseView>
             <ImageView>
-              <Image source={require('../assets/Images/LogoSmart.png')} />
+              <Image source={require('../../assets/Images/LogoSmart.png')} />
             </ImageView>
             <TitleView>
               <SortTitle>Sorteador de duplas</SortTitle>
@@ -107,11 +119,11 @@ const Header = ({ title, onPress }) => {
               ))}
             </ListView>
             <SortView>
-              <SortButton>
+              <SortButton onPress={sortParticipantsIntoTeams}>
                 <TitleButton>Sortear</TitleButton>
               </SortButton>
             </SortView>
-          </View>
+          </ModalView>
         </View>
       </Modal>
     </>

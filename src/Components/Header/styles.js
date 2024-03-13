@@ -10,30 +10,37 @@ export const Container = styled.View`
   align-items: center;
   justify-content: space-between;
   height: 50;
-  background-color: #fff;
+  background-color: #151515;
 `
 export const Title = styled.Text`
   font-family: 'Montserrat-SemiBold';
   font-size: 16px;
-  color: #000;
+  color: white;
 `
 export const Hamburguer = styled(Ionicons)`
   font-size: 24;
-  color: #000;
   margin-left: 14;
+  color: white;
 `
 export const SortIcon = styled(MaterialCommunityIcons)`
   font-size: 24;
-  color: #000;
   margin-right: 14;
+  color: white;
+`
+export const ModalView = styled.View`
+   height: 666;
+   border-top-left-radius: 20px;
+   border-top-right-radius: 20px;
+   background-color: #212121;
 `
 export const CloseView = styled.View`
   width: 100%;
   align-items: flex-end;
+  padding: 10px;
 `
 export const Close = styled(AntDesign)`
   font-size: 24px;
-  color: black;
+  color: white;
 `
 export const ImageView = styled.View`
   align-items: center;
@@ -50,8 +57,8 @@ export const TitleView = styled.View`
 export const SortTitle = styled.Text`
   font-family: 'Montserrat-SemiBold';
   font-size: 16px;
-  color: #000;
   margin-top: 25px;
+  color: white;
 `
 export const InputView = styled.View`
   margin: 0 auto;
@@ -60,7 +67,8 @@ export const InputView = styled.View`
 export const Label = styled.Text`
   font-family: 'Montserrat-Medium';
   font-size: 10px;
-  color: #0F0F0F;
+  margin-bottom: 5px;
+  color: white;
 `
 export const ButtonView = styled.View`
   flex-direction: row;
@@ -71,6 +79,8 @@ export const Input = styled.TextInput`
   font-family: 'Roboto';
   font-size: 8px;
   padding: 0 10px;
+  border-radius: 2px 0px 0px 2px;
+  background-color: white;
 `
 export const Button = styled.TouchableOpacity`
   width: 26px;
@@ -87,19 +97,19 @@ export const AddIcon = styled(AntDesign)`
 export const ListTitleView = styled.View`
   margin-left: 92px;
   margin-top: 30px;
-  
 `
 export const TitleList = styled.Text`
   font-family: 'Montserrat-Medium';
   font-size: 10px;
-  color: #0F0F0F;
+  color: white;
 `
 export const Dot = styled(Entypo)`
   font-size: 10px;
+  color: white;
 `
 export const DeleteName = styled(AntDesign)`
   font-size: 10px;
-  color: #000;
+  color: white;
 `
 export const ListView = styled(ScrollView)`
   margin-top: 10px;
@@ -121,7 +131,7 @@ export const DotView = styled.View`
 export const NamesView = styled.Text`
   font-family: 'Roboto-Regular';
   font-size: 10px;
-  color: #0F0F0F;
+  color: white;
 `
 export const SortView = styled.View`
   position: absolute;

@@ -2,8 +2,8 @@ import styled from "styled-components/native";
 import Feather from "react-native-vector-icons/Feather";
 
 export const Container = styled.View`
-  background-color: #fff;
   height: 100%;
+  background-color: ${(props) => props.theme.bodyWeek};
 `
 export const EditView = styled.View`
   align-items: flex-end;
@@ -25,6 +25,7 @@ export const DivSeg = styled.View`
   background-color: #fff;
   align-items: center;
   margin-top: 15px;
+  background-color: ${(props) => props.theme.backgroundWeek};
 `
 export const DivDay = styled.View`
   width: 163px;
@@ -32,6 +33,7 @@ export const DivDay = styled.View`
   background-color: #fff;
   align-items: center;
   margin-top: 15px;
+  background-color: ${(props) => props.theme.backgroundWeek};
 `
 export const DivSex = styled.View`
   width: 163px;
@@ -39,14 +41,14 @@ export const DivSex = styled.View`
   align-items: center;
   margin: 0 auto;
   margin-top: 15px;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.backgroundWeek};
 `
 export const WeekDay = styled.Text`
   font-family: 'Montserrat-Medium';
   font-size: 16px;
   font-weight: 500;
   padding-top: 10px;
-  color: #000000;
+  color: ${(props) => props.theme.text};
 `
 export const DivNames = styled.View`
   flex-direction: row;
@@ -56,7 +58,7 @@ export const Names = styled.Text`
   font-size: 16px;
   font-weight: 400;
   flex-direction:row ;
-  color: #000000;
   padding-top: 20px;
+  color: ${(props) => props.theme.text};
 `
 
