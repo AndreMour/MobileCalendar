@@ -69,9 +69,8 @@ const Header = ({ title, onPress }) => {
         animationType='slide'
         transparent={true}
       >
-        <View style={{
+        <TouchableOpacity onPress={() => setModalVisible(false)} style={{
           flex: 1,
-          padding: 3,
           backgroundColor: transparent,
           flexDirection: 'column-reverse'
         }}>
@@ -124,7 +123,7 @@ const Header = ({ title, onPress }) => {
               </SortButton>
             </SortView>
           </ModalView>
-        </View>
+        </TouchableOpacity>
       </Modal>
     </>
   )
