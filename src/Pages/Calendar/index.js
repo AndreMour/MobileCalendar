@@ -30,12 +30,15 @@ function getAllFridays(year, startMonth = 0, endMonth = 11) {
     return fridays;
 }
 
-export default function Calendar(teams) {
+export default function Calendar() {
     const [isModalVisible, setModalVisible] = useState(false);
     const [isModalDayVisible, setModalDayVisible] = useState(false);
+    const [fridayGroups, setFridayGroups] = useState([]);
+    const [isTaskExpanded, setIsTaskExpanded] = useState(false);
 
     const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    const DAYS_WEEK = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
     const DAYS_OF_THE_WEEK = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
     const MONTHS = [
         'Janeiro',
@@ -54,6 +57,7 @@ export default function Calendar(teams) {
 
     const today = new Date();
     const [selectedDay, setSelectedDay] = useState(null);
+
     const [currentDate, setCurrentDate] = useState(new Date());
     const [day, setDay] = useState(currentDate.getDate());
     const [month, setMonth] = useState(currentDate.getMonth());
@@ -84,7 +88,7 @@ export default function Calendar(teams) {
         <Body>
             <SafeAreaView>
                 <View>
-                    <Header title={"Calendário de Limpeza"} />
+                    <Header title={"Calendário de Limpeza"} setFridayGroups={setFridayGroups} />
                 </View>
             </SafeAreaView>
             <Months>
@@ -134,8 +138,13 @@ export default function Calendar(teams) {
                                         empty={!d}
                                         dayOfWeek={dayOfWeek}
                                         onPress={() => {
-                                            setSelectedDay(d);
-                                            setModalDayVisible(true);
+                                            if (!isFriday) {
+                                                setSelectedDay(d);
+                                                setModalDayVisible(true);
+                                            } else {
+                                                setSelectedDay(d);
+                                                setModalVisible(true);
+                                            }
                                         }}
                                     >
                                         <Modal
@@ -151,7 +160,7 @@ export default function Calendar(teams) {
                                                     <TopView>
                                                         <ActualDayView>
                                                             <ActualDay>
-                                                                Sexta, {selectedDay} de {MONTHS[month]}
+                                                                {DAYS_WEEK[new Date(year, month, selectedDay - 1).getDay()]}, {selectedDay} de {MONTHS[month]}
                                                             </ActualDay>
                                                         </ActualDayView>
                                                         <CloseView>
@@ -168,7 +177,7 @@ export default function Calendar(teams) {
                                         <DayNumber>
                                             {d > 0 ? String(d).padStart(2, '0') : ''}
                                         </DayNumber>
-                                        {isFriday && (
+                                        {isFriday && fridayGroups && (
                                             <CircleView>
                                                 <Circle onPress={() => {
                                                     setSelectedDay(d);
@@ -187,7 +196,7 @@ export default function Calendar(teams) {
                                                                 <TopView>
                                                                     <ActualDayView>
                                                                         <ActualDay>
-                                                                            Sexta, {selectedDay} de {MONTHS[month]}
+                                                                            {DAYS_WEEK[new Date(year, month, selectedDay).getDay() - 1]}, {selectedDay} de {MONTHS[month]}
                                                                         </ActualDay>
                                                                     </ActualDayView>
                                                                     <CloseView>

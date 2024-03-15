@@ -45,7 +45,6 @@ export const DayWeek = styled.View`
 export const WeekDay = styled.Text`
   font-family: 'Montserrat-Medium';
   font-size: 15px;
-  font-weight: 500;
   color: #626262;
 `
 export const DaysOfTheMonth = styled.View`
@@ -75,7 +74,7 @@ export const DayNumber = styled.Text`
   padding-bottom: 40px;
 `;
 export const ModalView = styled.View`
-   height: 350;
+   height: 350px;
    background-color: #131313;
    border-top-left-radius: 20px;
    border-top-right-radius: 20px;
@@ -128,9 +127,9 @@ export const Hour = styled.Text`
 export const HeaderView = styled.View`
   flex-direction: row;
 `
-export const TaskView = styled.View`
+export const TaskView = styled.TouchableOpacity`
   width: 297px;
-  height: 235px;
+  height: 90px;
   background-color: #2B2B2B;
   border-radius: 5px;
   margin: 5px 15px 0 0;
