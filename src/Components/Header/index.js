@@ -1,4 +1,4 @@
-import { View, TouchableOpacity, Modal, StyleSheet } from 'react-native'
+import { TouchableOpacity, Modal, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import {
@@ -13,7 +13,7 @@ import {
 
 const transparent = 'rgba(0,0,0,0.5)';
 
-const Header = ({ title, onPress }) => {
+const Header = ({ title, onPress, setFridayGroups }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [participants, setParticipants] = useState([]);
   const [names, setNames] = useState("");
@@ -49,7 +49,6 @@ const Header = ({ title, onPress }) => {
   const sortParticipantsIntoTeams = () => {
     const numTeams = Math.ceil(participants.length / 2);
     const teams = generateTeams(participants, numTeams);
-    console.log(teams)
     return teams;
   };
 
@@ -118,8 +117,8 @@ const Header = ({ title, onPress }) => {
               ))}
             </ListView>
             <SortView>
-              <SortButton onPress={sortParticipantsIntoTeams}>
-                <TitleButton>Sortear</TitleButton>
+              <SortButton onPress={() => setFridayGroups(sortParticipantsIntoTeams())}>
+                <TitleButton onPress={() => setModalVisible(false)}>Sortear</TitleButton>
               </SortButton>
             </SortView>
           </ModalView>

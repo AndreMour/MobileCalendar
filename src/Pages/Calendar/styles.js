@@ -73,6 +73,16 @@ export const DayNumber = styled.Text`
   color: white;
   padding-bottom: 40px;
 `;
+export const CircleView = styled.View`
+  display: flex;
+  padding-top: 30px;
+`
+export const Circle = styled.TouchableOpacity`
+  width: 20px;
+  height: 20px;
+  background-color: #B73625;
+  border-radius: 50px;
+`
 export const ModalView = styled.View`
    height: 350px;
    background-color: #131313;
@@ -113,29 +123,32 @@ export const Close = styled(AntDesign)`
 `
 export const AlignView = styled.View`
   flex-direction: row;
-  justify-content: space-between;
   margin-top: 40px;
+  position: relative;
 `
 export const HourView = styled.View`
-  margin: 15px 0 0 20px;
+  margin: auto;
 `
-export const Hour = styled.Text`
+export const Hour = styled.Text` 
   font-family: 'Roboto-Regular';
   font-size: 12px;
   color: #A3A3A3;
 `
 export const HeaderView = styled.View`
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
 `
 export const TaskView = styled.TouchableOpacity`
   width: 297px;
-  height: 90px;
+  height: 60px;
   background-color: #2B2B2B;
   border-radius: 5px;
   margin: 5px 15px 0 0;
 `
 export const TitleView = styled.View`
-  padding: 20px 0 0 15px;
+  padding-left:20px;
   width: 148.5px;
 `
 export const TitleTask = styled.Text`
@@ -143,11 +156,14 @@ export const TitleTask = styled.Text`
   font-size: 16px;
   color: white;
 `
+export const GroupTimeView = styled.View`
+  flex-direction: row;
+  margin-right: 20px;
+`
 export const GroupView = styled.View`
   display: flex;
   flex-direction: row-reverse;
   width: 70px;
-  padding-top: 20px;
 `
 export const Group = styled.Text`
   font-family: 'Roboto-Regular';
@@ -155,7 +171,7 @@ export const Group = styled.Text`
   color: #A3A3A3;
 `
 export const TimeView = styled.View`
-  margin: 20px 0 0 20px;
+  margin-left:30px;
   width: 40px;
 `
 export const TimeTask = styled.Text`
@@ -166,6 +182,7 @@ export const TimeTask = styled.Text`
 export const AlignBottomView = styled.View`
   flex-direction: row;
   justify-content: space-between;
+  margin-top: -20px;
 `
 export const DotDescriptionView = styled.View`
   flex-direction: row;
@@ -193,38 +210,4 @@ export const AllDescription = styled.Text`
   font-family: 'Roboto-Regular';
   font-size: 10px;
   color: white
-`
-
-//-----------------------------------------------
-
-export const DayContent = styled.View`
-  position: absolute;
-  display: flex;
-  bottom: -10px;
-  margin-left: 10px; 
-`
-export const ParticipantsContainer = styled.View`
-  display: flex;
-  flex-wrap: wrap;
-  overflow: hidden;
-  margin: 0 50px 27px 0;
-`
-
-export const Participants = styled.Text`
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  margin: 10px 35px 10px 0;
-  color: ${({ theme }) => theme.text};
-`
-export const CircleView = styled.View`
-  display: flex;
-  padding-top: 30px;
-`
-export const Circle = styled.TouchableOpacity`
-  width: 20px;
-  height: 20px;
-  background-color: #B73625;
-  border-radius: 50px;
-  
 `
