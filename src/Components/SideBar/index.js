@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { Switch } from 'react-native-switch';
-import { NavigationContainer } from '@react-navigation/native';
+import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import {
   Close, ImageView, CloseView,
-  CalendarIcon, CoffeIcon, ButtonView, TopView
+  CalendarIcon, CoffeIcon, ButtonView, TopView, SideBarContainer
 } from './styles';
 import Calendar from '../../Pages/Calendar/index';
 import DaysOfCoffe from '../../Pages/DaysOfCoffe';
@@ -69,7 +69,7 @@ const SideBar = ({ themeToggler, theme }) => {
 
           <>
             <CustomDrawerHeader {...props} themeToggler={themeToggler} />
-            <DrawerContentScrollView {...props} style={styles.drawerContent} theme={'light'}>
+            <DrawerContentScrollView {...props} style={styles.drawerContent} >
               <DrawerItemList {...props} />
             </DrawerContentScrollView>
 

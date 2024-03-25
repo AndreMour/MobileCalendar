@@ -28,7 +28,7 @@ export const SortIcon = styled(MaterialCommunityIcons)`
   color: white;
 `
 export const ModalView = styled.View`
-   height: 666;
+   height:85%;
    border-top-left-radius: 20px;
    border-top-right-radius: 20px;
    background-color: #212121;

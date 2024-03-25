@@ -29,14 +29,11 @@ export const Close = styled(AntDesign)`
   color: white;
 `
 export const CalendarIcon = styled(Feather)`
-  font-size: 20;
+  font-size: 20px;
   color: white;
 `
 export const CoffeIcon = styled(Feather)`
-  font-size: 20;
+  font-size: 20px;
   color: white;
 `
 
-export const SideBarContainer = styled.View`
-  background-color: ${({ theme }) => theme.body};
-`

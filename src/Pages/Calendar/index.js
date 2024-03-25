@@ -12,7 +12,7 @@ import {
 } from './styles';
 import Header from '../../Components/Header';
 
-export default function Calendar() {
+export default function Calendar(currentGroups) {
     const [isModalVisible, setModalVisible] = useState(false);
     const [isModalDayVisible, setModalDayVisible] = useState(false);
     const [fridayGroups, setFridayGroups] = useState([]);
@@ -24,6 +24,7 @@ export default function Calendar() {
     const [year, setYear] = useState(currentDate.getFullYear());
     const [startDay, setStartDay] = useState(getStartDayOfMonth(currentDate));
     const [allFridays, setAllFridays] = useState([]);
+    const [selectedFridayGroups, setSelectedFridayGroups] = useState([]);
 
     const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -35,22 +36,28 @@ export default function Calendar() {
     ];
 
     const today = new Date();
-    let groupsIndex = 0;
 
-    function getAllFridays(year, month) {
+    function getAllFridays(year, startMonth = 0, endMonth = 11) {
         const fridays = [];
-        const today = new Date();
         const currentMonth = today.getMonth();
+        const currentDay = today.getDate();
 
-        for (let day = 1; day <= DAYS[month]; day++) {
-            const date = new Date(year, month, day);
+        for (let month = startMonth; month <= endMonth; month++) {
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-            if (month === currentMonth && date.getDay() === 5 && day >= today.getDate()) {
-                fridays.push(date);
-            } else if (month !== currentMonth && date.getDay() === 5) {
-                fridays.push(date);
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(year, month, day);
+
+                if (date.getDay() === 5) {
+                    if (month < currentMonth || (month === currentMonth && day < currentDay)) {
+                        continue;
+                    }
+                    fridays.push(date);
+                }
             }
         }
+
+        console.log('Todas sextas do mês: ', fridays)
 
         return fridays;
     }
@@ -131,22 +138,14 @@ export default function Calendar() {
         setAllFridays(getAllFridays(currentDate.getFullYear(), 0, 11));
     }, [currentDate]);
 
-    useEffect(() => {
-        const currentMonth = MONTHS[month];
-        const currentYear = currentDate.getFullYear();
-        const fridaysOfMonth = getAllFridays(currentYear, month);
-
-        console.log('currentMonth: ', currentMonth);
-        console.log('Fridays of the month: ', fridaysOfMonth);
-    }, [month]);
-
     const modalCircle = (d, currentGroups) => {
 
         return (
             <CircleView>
                 <Circle onPress={() => {
                     setSelectedDay(d);
-                    setModalVisible(true);
+                    setModalVisible(true)
+                    setSelectedFridayGroups(currentGroups);
                 }}>
                     <Modal
                         visible={isModalVisible}
@@ -185,16 +184,7 @@ export default function Calendar() {
                                             </TitleView>
                                             <GroupTimeView>
                                                 <GroupView>
-                                                    {currentGroups && (
-                                                        <Group>
-                                                            Duplas: {currentGroups.map((participant, idx) => (
-                                                                <React.Fragment key={idx}>
-                                                                    {idx > 0 && idx < currentGroups.length && <Text> e </Text>}
-                                                                    <Text>{participant}</Text>
-                                                                </React.Fragment>
-                                                            ))}
-                                                        </Group>
-                                                    )}
+                                                    {displayGroups(selectedFridayGroups)}
                                                 </GroupView>
                                                 <TimeView>
                                                     <TimeTask>
@@ -214,24 +204,40 @@ export default function Calendar() {
         )
     }
 
-    const displayGroups = (d, month) => {
+    const displayGroups = (currentGroups) => {
 
-        if (fridaysOfMonth && fridayGroups.length > 0) {
-            let i = 0;
-            let currentDay = fridaysOfMonth[i];
-            let currentGroups = fridayGroups[i];
+        return (
+            <View>
+                {
+                    currentGroups && (
+                        <Group>
+                            Duplas: {currentGroups.map((participant, idx) => (
+                                <React.Fragment key={idx}>
+                                    {idx > 0 && idx < currentGroups.length && <Text> e </Text>}
+                                    <Text>{participant}</Text>
+                                </React.Fragment>
+                            ))}
+                        </Group>
+                    )
+                }
+            </View>
+        )
+    }
 
-            if (currentGroups) {
+    const displayFridays = (d, month) => {
+        const isFriday = allFridays.some(friday => friday.getDate() === d && friday.getMonth() === month);
+        const fridayIndex = allFridays.findIndex(friday => friday.getDate() === d && friday.getMonth() === month);
+
+        if (isFriday && fridayIndex >= 0) {
+            const currentGroups = fridayGroups[fridayIndex];
+
+            if (currentGroups && currentGroups.length > 0) {
                 return modalCircle(d, currentGroups);
-            } else {
-                return null;
             }
-        } else {
-            return null;
         }
-    };
 
-    console.log(fridayGroups)
+        return null;
+    };
 
     return (
         <Body>
@@ -284,12 +290,11 @@ export default function Calendar() {
                                         empty={!d}
                                         dayOfWeek={dayOfWeek}
                                         onPress={() => {
-                                            if (!isFriday) {
+                                            if (isFriday && currentGroups) {
                                                 setSelectedDay(d);
+                                            } else if (!isFriday) {
                                                 setModalDayVisible(true);
-                                            } else {
                                                 setSelectedDay(d);
-                                                setModalVisible(true);
                                             }
                                         }
                                         }
@@ -298,7 +303,7 @@ export default function Calendar() {
                                         <DayNumber>
                                             {d > 0 ? String(d).padStart(2, '0') : ''}
                                         </DayNumber>
-                                        {displayGroups(d, month)}
+                                        {displayFridays(d, month)}
                                     </Day>
                                 );
                             })}
