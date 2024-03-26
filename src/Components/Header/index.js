@@ -10,6 +10,7 @@ import {
   Dot, DeleteName, DotView, DotNameView, SortView,
   SortButton, TitleButton, ModalView
 } from './styles';
+import { useTheme } from '@react-navigation/native';
 
 const transparent = 'rgba(0,0,0,0.5)';
 
@@ -52,15 +53,26 @@ const Header = ({ title, onPress, setFridayGroups }) => {
     return teams;
   };
 
+  const { colors } = useTheme();
+
+  const styles = StyleSheet.create({
+    text: {
+      color: colors.text,
+    },
+    backgroundModalSort: {
+      backgroundColor: colors.backgroundModalSort,
+    }
+  });
+
   return (
     <>
       <Container>
         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-          <Hamburguer name={"menu"} />
+          <Hamburguer name={"menu"} style={styles.text} />
         </TouchableOpacity>
-        <Title>{title}</Title>
+        <Title style={styles.text} >{title}</Title>
         <TouchableOpacity onPress={onPress}>
-          <SortIcon name={"sort-calendar-descending"} onPress={() => setModalVisible(true)} />
+          <SortIcon name={"sort-calendar-descending"} onPress={() => setModalVisible(true)} style={styles.text} />
         </TouchableOpacity>
       </Container>
       <Modal
@@ -73,20 +85,20 @@ const Header = ({ title, onPress, setFridayGroups }) => {
           backgroundColor: transparent,
           flexDirection: 'column-reverse'
         }}>
-          <ModalView>
+          <ModalView style={styles.backgroundModalSort}>
             <CloseView>
-              <TouchableOpacity onPress={() => setModalVisible(false)}>
-                <Close name='close' />
+              <TouchableOpacity onPress={() => setModalVisible(false)} >
+                <Close name='close' style={styles.text} />
               </TouchableOpacity>
             </CloseView>
             <ImageView>
               <Image source={require('../../assets/Images/LogoSmart.png')} />
             </ImageView>
             <TitleView>
-              <SortTitle>Sorteador de duplas</SortTitle>
+              <SortTitle style={styles.text}>Sorteador de duplas</SortTitle>
             </TitleView>
             <InputView>
-              <Label>Insira o nome</Label>
+              <Label style={styles.text}>Insira o nome</Label>
               <ButtonView>
                 <Input style={styles.PlaceColor}
                   placeholder='Digite um nome'
@@ -99,20 +111,20 @@ const Header = ({ title, onPress, setFridayGroups }) => {
               </ButtonView>
             </InputView>
             <ListTitleView>
-              <TitleList>Lista de participantes</TitleList>
+              <TitleList style={styles.text}>Lista de participantes</TitleList>
             </ListTitleView>
             <ListView>
               {participants.map((participant, index) => (
                 <CloseListView key={index}>
                   <DotNameView>
                     <DotView>
-                      <Dot name='dot-single' />
+                      <Dot name='dot-single' style={styles.text} />
                     </DotView>
-                    <NamesView>
+                    <NamesView style={styles.text}>
                       {participant}
                     </NamesView>
                   </DotNameView>
-                  <DeleteName name='close' onPress={() => handleDeleteParticipant(index)} />
+                  <DeleteName name='close' onPress={() => handleDeleteParticipant(index)} style={styles.text} />
                 </CloseListView>
               ))}
             </ListView>
@@ -128,10 +140,4 @@ const Header = ({ title, onPress, setFridayGroups }) => {
   )
 }
 
-const styles = StyleSheet.create({
-  PlaceColor: {
-    color: '#939393',
-  }
-})
-
-export default Header
+export default Header;

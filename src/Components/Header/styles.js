@@ -10,28 +10,28 @@ export const Container = styled.View`
   align-items: center;
   justify-content: space-between;
   height: 50;
-  background-color: #151515;
+  color: ${({ theme }) => theme.body};
 `
 export const Title = styled.Text`
   font-family: 'Montserrat-SemiBold';
   font-size: 16px;
-  color: white;
+  color: ${({ theme }) => theme.text};
 `
 export const Hamburguer = styled(Ionicons)`
   font-size: 24;
   margin-left: 14;
-  color: white;
+  color: ${({ theme }) => theme.text};
 `
 export const SortIcon = styled(MaterialCommunityIcons)`
   font-size: 24;
   margin-right: 14;
-  color: white;
+  color: ${({ theme }) => theme.text};
 `
 export const ModalView = styled.View`
    height:85%;
    border-top-left-radius: 20px;
    border-top-right-radius: 20px;
-   background-color: #212121;
+   color: ${({ theme }) => theme.body};
 `
 export const CloseView = styled.View`
   width: 100%;
@@ -40,7 +40,7 @@ export const CloseView = styled.View`
 `
 export const Close = styled(AntDesign)`
   font-size: 24px;
-  color: white;
+  color: ${({ theme }) => theme.text};
 `
 export const ImageView = styled.View`
   align-items: center;
@@ -58,7 +58,7 @@ export const SortTitle = styled.Text`
   font-family: 'Montserrat-SemiBold';
   font-size: 16px;
   margin-top: 25px;
-  color: white;
+  color: ${({ theme }) => theme.text};
 `
 export const InputView = styled.View`
   margin: 0 auto;
@@ -68,7 +68,7 @@ export const Label = styled.Text`
   font-family: 'Montserrat-Medium';
   font-size: 10px;
   margin-bottom: 5px;
-  color: white;
+  color: ${({ theme }) => theme.text};
 `
 export const ButtonView = styled.View`
   flex-direction: row;
@@ -101,15 +101,15 @@ export const ListTitleView = styled.View`
 export const TitleList = styled.Text`
   font-family: 'Montserrat-Medium';
   font-size: 10px;
-  color: white;
+  color: ${({ theme }) => theme.text};
 `
 export const Dot = styled(Entypo)`
   font-size: 10px;
-  color: white;
+  color: ${({ theme }) => theme.text};
 `
 export const DeleteName = styled(AntDesign)`
   font-size: 10px;
-  color: white;
+  color: ${({ theme }) => theme.text};
 `
 export const ListView = styled(ScrollView)`
   margin-top: 10px;
@@ -131,7 +131,7 @@ export const DotView = styled.View`
 export const NamesView = styled.Text`
   font-family: 'Roboto-Regular';
   font-size: 10px;
-  color: white;
+  color: ${({ theme }) => theme.text};
 `
 export const SortView = styled.View`
   position: absolute;

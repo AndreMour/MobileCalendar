@@ -8,7 +8,6 @@ export const Body = styled.View`
   height: 100%;
   display: flex;
   flex-wrap: wrap;
-  background-color: ${({ theme }) => theme.body};
 `
 export const Months = styled.View` 
   display: flex;
@@ -22,12 +21,11 @@ export const Month = styled.Text`
   font-family: 'Montserrat-SemiBold';
   font-size: 20px;
   font-weight: 600;
-  color: white;
 `
 export const ArrowIcon = styled(SimpleLineIcons)`
   font-size: 15px;
   padding: 0 45px 0 45px;
-  color: white;
+  color: ${({ theme }) => theme.text};
 `
 export const DaysOfTheWeek = styled.View`
   display: flex;
@@ -70,7 +68,7 @@ export const DayNumber = styled.Text`
   flex-direction: row;
   font-size: 16px;
   font-weight: 500;
-  color: white;
+  color: ${({ theme }) => theme.text};
   padding-bottom: 40px;
 `;
 export const CircleView = styled.View`
@@ -98,7 +96,7 @@ export const TextView = styled.View`
 export const Message = styled.Text`
   font-family: 'Montserrat-Light';
   font-size: 16px;
-  color: #FFFFFF;
+  color: ${({ theme }) => theme.text};
 `
 export const TopView = styled.View`
   flex-direction: row;
@@ -109,7 +107,7 @@ export const ActualDayView = styled.View`
 export const ActualDay = styled.Text`
   font-family: 'Montserrat-SemiBold';
   font-size: 16px;
-  color: white;
+  color: ${({ theme }) => theme.text};
 `
 export const CloseView = styled.View`
   position: absolute;
@@ -119,7 +117,7 @@ export const CloseView = styled.View`
 `
 export const Close = styled(AntDesign)`
   font-size: 20px;
-  color: white;
+  color: ${({ theme }) => theme.text};
 `
 export const AlignView = styled.View`
   flex-direction: row;
@@ -154,7 +152,7 @@ export const TitleView = styled.View`
 export const TitleTask = styled.Text`
   font-family: 'Montserrat-Medium';
   font-size: 16px;
-  color: white;
+  color: ${({ theme }) => theme.text};
 `
 export const GroupTimeView = styled.View`
   flex-direction: row;
@@ -209,5 +207,5 @@ export const AllDescriptionView = styled.View`
 export const AllDescription = styled.Text`
   font-family: 'Roboto-Regular';
   font-size: 10px;
-  color: white
+  color: ${({ theme }) => theme.text};
 `

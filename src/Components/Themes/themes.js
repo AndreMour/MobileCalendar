@@ -2,23 +2,25 @@ import { DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { COLORS } from '../Colors/colors';
 
 export const darkTheme = {
-  // ...DarkTheme,
   colors: {
-    // ...DarkTheme.colors,
+    ...DarkTheme.colors,
     primary: COLORS.primaryBlack,
     background: COLORS.secundaryBlack,
-    text: COLORS.primaryWhite,
+    text: 'white',
     orange: COLORS.primaryOrange,
+    backgroundModalSort: COLORS.backgroundModal,
+    backgroundWeek: COLORS.backgroundWeek,
   }
 }
 
 export const lightTheme = {
-  // ...DefaultTheme,
   colors: {
-    // ...DefaultTheme.colors,
+    ...DefaultTheme.colors,
     primary: COLORS.secundaryWhite,
     background: COLORS.primaryWhite,
-    text: COLORS.TextBlack,
+    text: 'black',
     orange: COLORS.primaryOrange,
+    backgroundModalSort: COLORS.primaryWhite,
+    backgroundWeek: COLORS.primaryWhite,
   }
 }

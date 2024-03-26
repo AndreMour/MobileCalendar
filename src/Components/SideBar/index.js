@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { Switch } from 'react-native-switch';
-import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import {
   Close, ImageView, CloseView,
-  CalendarIcon, CoffeIcon, ButtonView, TopView, SideBarContainer
+  CalendarIcon, CoffeIcon, ButtonView, TopView
 } from './styles';
 import Calendar from '../../Pages/Calendar/index';
 import DaysOfCoffe from '../../Pages/DaysOfCoffe';
 import { lightTheme, darkTheme } from '../Themes/themes';
 import { COLORS } from '../Colors/colors';
+import { useTheme } from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
 
 const CustomDrawerHeader = ({ navigation, themeToggler }) => {
   const [value, setValue] = useState();
+
+  const { colors } = useTheme();
+
+  const styles = StyleSheet.create({
+    text: {
+      color: colors.text,
+    },
+  })
 
   const handleCloseDrawer = () => {
     navigation.closeDrawer();
@@ -38,15 +47,15 @@ const CustomDrawerHeader = ({ navigation, themeToggler }) => {
             renderInActiveText={false}
             barHeight={20}
             circleSize={18.67}
-            backgroundActive='#111111'
-            backgroundInactive='#F5F5F5'
+            backgroundActive='#F5F5F5'
+            backgroundInactive='#111111'
             circleActiveColor={COLORS.primaryOrange}
             circleInActiveColor={COLORS.primaryOrange}
             circleBorderWidth={0}
           />
         </ButtonView>
         <CloseView>
-          <Close name="close" onPress={() => handleCloseDrawer} />
+          <Close name="close" onPress={() => handleCloseDrawer} style={styles.text} />
         </CloseView>
       </TopView>
       <ImageView>
@@ -72,7 +81,6 @@ const SideBar = ({ themeToggler, theme }) => {
             <DrawerContentScrollView {...props} style={styles.drawerContent} >
               <DrawerItemList {...props} />
             </DrawerContentScrollView>
-
           </>
         )}
         screenOptions={() => ({
@@ -81,44 +89,56 @@ const SideBar = ({ themeToggler, theme }) => {
           },
           headerShown: false,
           drawerActiveTintColor: "#313131",
-          drawerLabelStyle: {
-            fontFamily: 'Montserrat-SemiBold',
-            fontSize: 12,
-            marginLeft: -10,
-          }
         })}
       >
         <Drawer.Screen
           name='Cleaning Calendar'
           component={() => <Calendar />}
-          options={{
-            drawerLabel: "Calendário de limpeza",
-            title: "Calendário de Limpeza",
-            headerShadowVisible: false,
-            headerTitleAlign: 'center',
-            headerTitleStyle: {
-              fontSize: 16,
-              fontFamily: 'Montserrat-SemiBold',
-            },
-            drawerIcon: () => (
-              <CalendarIcon name="calendar" />
-            )
+          options={() => {
+            const { colors } = useTheme();
+            const styles = StyleSheet.create({
+              text: {
+                color: colors.text,
+              },
+            });
+
+            return {
+              drawerLabel: "Calendário de limpeza",
+              drawerIcon: () => (
+                <CalendarIcon name="calendar" style={styles.text} />
+              ),
+              drawerLabelStyle: {
+                fontFamily: 'Montserrat-SemiBold',
+                fontSize: 12,
+                marginLeft: -10,
+                color: colors.text,
+              }
+            }
           }}
         />
         <Drawer.Screen
           name='DaysOfCoffe'
           component={DaysOfCoffe}
-          options={{
-            drawerLabel: "Dias do café",
-            title: "Dias do Café",
-            headerTitleAlign: 'center',
-            headerTitleStyle: {
-              fontSize: 16,
-              fontFamily: 'Montserrat-SemiBold',
-            },
-            drawerIcon: () => (
-              <CoffeIcon name="coffee" />
-            )
+          options={() => {
+            const { colors } = useTheme();
+            const styles = StyleSheet.create({
+              text: {
+                color: colors.text,
+              },
+            });
+
+            return {
+              drawerLabel: "Dias do Café",
+              drawerIcon: () => (
+                <CoffeIcon name="coffee" style={styles.text} />
+              ),
+              drawerLabelStyle: {
+                fontFamily: 'Montserrat-SemiBold',
+                fontSize: 12,
+                marginLeft: -10,
+                color: colors.text,
+              }
+            }
           }}
         />
       </Drawer.Navigator>
@@ -137,6 +157,6 @@ const styles = StyleSheet.create({
   drawerContent: {
     marginTop: -300,
   }
-});
+})
 
 export default SideBar;

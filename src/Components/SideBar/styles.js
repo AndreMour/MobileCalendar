@@ -26,14 +26,11 @@ export const ImageView = styled.View`
 `
 export const Close = styled(AntDesign)`
   font-size: 24px;
-  color: white;
 `
 export const CalendarIcon = styled(Feather)`
   font-size: 20px;
-  color: white;
 `
 export const CoffeIcon = styled(Feather)`
   font-size: 20px;
-  color: white;
 `
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, SafeAreaView, Modal, TouchableOpacity, Text } from 'react-native';
+import { View, SafeAreaView, Modal, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import {
     Body, DayWeek, DaysOfTheWeek, Months, Month,
     ArrowIcon, DaysOfTheMonth, Day,
@@ -11,6 +11,7 @@ import {
     ActualDay, TextView, Message, GroupTimeView
 } from './styles';
 import Header from '../../Components/Header';
+import { useTheme } from '@react-navigation/native';
 
 export default function Calendar(currentGroups) {
     const [isModalVisible, setModalVisible] = useState(false);
@@ -239,6 +240,14 @@ export default function Calendar(currentGroups) {
         return null;
     };
 
+    const { colors } = useTheme();
+
+    const styles = StyleSheet.create({
+        text: {
+            color: colors.text,
+        },
+    });
+
     return (
         <Body>
             <SafeAreaView>
@@ -250,11 +259,13 @@ export default function Calendar(currentGroups) {
                 <ArrowIcon
                     name="arrow-left"
                     onPress={() => setCurrentDate(new Date(year, month - 1, day))}
+                    style={styles.text}
                 />
-                <Month>{MONTHS[month]} </Month>
+                <Month style={styles.text}>{MONTHS[month]} </Month>
                 <ArrowIcon
                     name="arrow-right"
                     onPress={() => setCurrentDate(new Date(year, month + 1, day))}
+                    style={styles.text}
                 />
             </Months>
             <DaysOfTheWeek>
@@ -300,7 +311,7 @@ export default function Calendar(currentGroups) {
                                         }
                                     >
                                         {modalNoTask()}
-                                        <DayNumber>
+                                        <DayNumber style={styles.text}>
                                             {d > 0 ? String(d).padStart(2, '0') : ''}
                                         </DayNumber>
                                         {displayFridays(d, month)}
@@ -312,3 +323,4 @@ export default function Calendar(currentGroups) {
         </Body>
     );
 }
+

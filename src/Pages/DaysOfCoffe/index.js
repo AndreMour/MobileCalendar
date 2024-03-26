@@ -5,8 +5,31 @@ import {
   DivNames, DivSeg, DivSex, EditIcon, EditView, Names, WeekDay
 } from './styles';
 import Header from '../../Components/Header';
+import { useTheme } from '@react-navigation/native';
 
 export default function DaysOfCoffe() {
+
+  const { colors } = useTheme();
+
+  const styles = StyleSheet.create({
+    text: {
+      color: colors.text,
+    },
+    background: {
+      backgroundColor: colors.backgroundWeek,
+    },
+    shadow: {
+      shadowColor: 'black',
+      shadowOffset: { width: 0, height: -12 },
+      shadowOpacity: 1,
+      shadowRadius: 4,
+      elevation: 5,
+    },
+    nameMargin: {
+      marginRight: 20
+    }
+  });
+
   return (
     <>
       <Container>
@@ -22,42 +45,42 @@ export default function DaysOfCoffe() {
           <DivSeg style={[styles.shadow, {
             borderTopWidth: 2,
             borderTopColor: "#B73625"
-          }]}>
-            <WeekDay>seg</WeekDay>
+          }, styles.background]}>
+            <WeekDay style={styles.text}>seg</WeekDay>
             <DivNames>
-              <Names style={styles.nameMargin}>Caio</Names>
-              <Names> Gabriel</Names>
+              <Names style={[styles.nameMargin, styles.text]}>Caio</Names>
+              <Names style={styles.text}> Gabriel</Names>
             </DivNames>
           </DivSeg>
-          <DivDay style={styles.shadow}>
-            <WeekDay>ter</WeekDay>
+          <DivDay style={[styles.shadow, styles.background]}>
+            <WeekDay style={styles.text}>ter</WeekDay>
             <DivNames>
-              <Names style={styles.nameMargin}>Bruna </Names>
-              <Names>Leo</Names>
+              <Names style={[styles.nameMargin, styles.text]}>Bruna </Names>
+              <Names style={styles.text}>Leo</Names>
             </DivNames>
           </DivDay>
         </ContainerWeek>
         <ContainerWeek>
-          <DivDay style={styles.shadow}>
-            <WeekDay>qua</WeekDay>
+          <DivDay style={[styles.shadow, styles.background]}>
+            <WeekDay style={styles.text}>qua</WeekDay>
             <DivNames>
-              <Names style={styles.nameMargin}>Osmar</Names>
-              <Names>João</Names>
+              <Names style={[styles.nameMargin, styles.text]}>Osmar</Names>
+              <Names style={styles.text}>João</Names>
             </DivNames>
           </DivDay>
-          <DivDay style={styles.shadow}>
-            <WeekDay>qui</WeekDay>
+          <DivDay style={[styles.shadow, styles.background]}>
+            <WeekDay style={styles.text}>qui</WeekDay>
             <DivNames>
-              <Names style={styles.nameMargin}>Wasch</Names>
-              <Names>Braian</Names>
+              <Names style={[styles.nameMargin, styles.text]}>Wasch</Names>
+              <Names style={styles.text}>Braian</Names>
             </DivNames>
           </DivDay>
         </ContainerWeek>
-        <DivSex style={styles.shadow}>
-          <WeekDay>sex</WeekDay>
+        <DivSex style={[styles.shadow, styles.background]}>
+          <WeekDay style={styles.text}>sex</WeekDay>
           <DivNames>
-            <Names style={styles.nameMargin}>Helegod </Names>
-            <Names >Pedro K.</Names>
+            <Names style={[styles.nameMargin, styles.text]}>Helegod </Names>
+            <Names style={styles.text}>Pedro K.</Names>
           </DivNames>
         </DivSex>
       </Container >
@@ -65,17 +88,4 @@ export default function DaysOfCoffe() {
 
   )
 }
-
-const styles = StyleSheet.create({
-  shadow: {
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: -12 },
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  nameMargin: {
-    marginRight: 20
-  }
-});
 

@@ -6,4 +6,6 @@ export const COLORS = {
   primaryWhite: '#FFFFFF',
   secundaryWhite: '#F5F5F5',
   buttonBlack: '#111111',
+  backgroundModal: '#212121',
+  backgroundWeek: '#1F1F1F',
 }
