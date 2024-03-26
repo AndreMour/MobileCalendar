@@ -1,20 +1,21 @@
-import { TouchableOpacity, Modal, StyleSheet } from 'react-native'
+import { TouchableOpacity, Modal, StyleSheet, View } from 'react-native'
 import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import {
   CloseView, Close, Container, Hamburguer,
   Image, ImageView, SortIcon, SortTitle,
-  TitleView, Title, InputView, Label, Input,
+  TitleView, Title, InputView, Label,
   Button, ButtonView, AddIcon, ListTitleView,
   TitleList, ListView, CloseListView, NamesView,
   Dot, DeleteName, DotView, DotNameView, SortView,
-  SortButton, TitleButton, ModalView
+  SortButton, TitleButton, ModalView, SortInput, AlignLabel, LabelView
 } from './styles';
 import { useTheme } from '@react-navigation/native';
+import { COLORS } from '../Colors/colors';
 
 const transparent = 'rgba(0,0,0,0.5)';
 
-const Header = ({ title, onPress, setFridayGroups }) => {
+const Header = ({ title, onPress, setFridayGroups, showSortIcon = true }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [participants, setParticipants] = useState([]);
   const [names, setNames] = useState("");
@@ -25,8 +26,10 @@ const Header = ({ title, onPress, setFridayGroups }) => {
   };
 
   const handleAddParticipant = () => {
-    setParticipants([...participants, names]);
-    setNames("");
+    if (names.trim() !== '') {
+      setParticipants([...participants, names]);
+      setNames("");
+    }
   };
 
   const handleDeleteParticipant = (index) => {
@@ -61,6 +64,9 @@ const Header = ({ title, onPress, setFridayGroups }) => {
     },
     backgroundModalSort: {
       backgroundColor: colors.backgroundModalSort,
+    },
+    textInput: {
+      color: 'black',
     }
   });
 
@@ -70,10 +76,14 @@ const Header = ({ title, onPress, setFridayGroups }) => {
         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
           <Hamburguer name={"menu"} style={styles.text} />
         </TouchableOpacity>
-        <Title style={styles.text} >{title}</Title>
-        <TouchableOpacity onPress={onPress}>
-          <SortIcon name={"sort-calendar-descending"} onPress={() => setModalVisible(true)} style={styles.text} />
-        </TouchableOpacity>
+        <Title style={styles.text}>{title}</Title>
+        {showSortIcon ? (
+          <TouchableOpacity onPress={onPress}>
+            <SortIcon name={"sort-calendar-descending"} onPress={() => setModalVisible(true)} style={styles.text} />
+          </TouchableOpacity>
+        ) : (
+          <View style={{ width: 24, height: 24 }} />
+        )}
       </Container>
       <Modal
         visible={isModalVisible}
@@ -98,17 +108,24 @@ const Header = ({ title, onPress, setFridayGroups }) => {
               <SortTitle style={styles.text}>Sorteador de duplas</SortTitle>
             </TitleView>
             <InputView>
-              <Label style={styles.text}>Insira o nome</Label>
-              <ButtonView>
-                <Input style={styles.PlaceColor}
-                  placeholder='Digite um nome'
-                  onChangeText={handleChange}
-                  onSubmitEditing={handleAddParticipant}
-                  value={names} />
-                <Button>
-                  <AddIcon name='addusergroup' onPress={handleAddParticipant} />
-                </Button>
-              </ButtonView>
+              <AlignLabel>
+                <LabelView>
+                  <Label style={styles.text}>Insira o nome</Label>
+                </LabelView>
+                <ButtonView>
+                  <SortInput
+                    placeholder='Digite um nome'
+                    placeholderTextColor={'#939393'}
+                    onChangeText={handleChange}
+                    onSubmitEditing={handleAddParticipant}
+                    value={names}
+                    style={styles.textInput}
+                  />
+                  <Button>
+                    <AddIcon name='addusergroup' onPress={handleAddParticipant} />
+                  </Button>
+                </ButtonView>
+              </AlignLabel>
             </InputView>
             <ListTitleView>
               <TitleList style={styles.text}>Lista de participantes</TitleList>
@@ -129,8 +146,8 @@ const Header = ({ title, onPress, setFridayGroups }) => {
               ))}
             </ListView>
             <SortView>
-              <SortButton onPress={() => setFridayGroups(sortParticipantsIntoTeams())}>
-                <TitleButton onPress={() => setModalVisible(false)}>Sortear</TitleButton>
+              <SortButton onPress={() => { setFridayGroups(sortParticipantsIntoTeams()), setModalVisible(false) }}>
+                <TitleButton>Sortear</TitleButton>
               </SortButton>
             </SortView>
           </ModalView>
