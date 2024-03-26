@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { Switch } from 'react-native-switch';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
@@ -24,6 +24,16 @@ const CustomDrawerHeader = ({ navigation, themeToggler }) => {
     text: {
       color: colors.text,
     },
+    shadow: {
+      width: 18.67,
+      height: 20,
+      borderRadius: 50,
+      shadowColor: 'black',
+      shadowOffset: { width: 0, height: -12 },
+      shadowOpacity: 1,
+      shadowRadius: 4,
+      elevation: 5,
+    }
   })
 
   const handleCloseDrawer = () => {
@@ -40,22 +50,24 @@ const CustomDrawerHeader = ({ navigation, themeToggler }) => {
     <DrawerContentScrollView>
       <TopView>
         <ButtonView>
-          <Switch style={styles.shadow}
-            value={value}
-            onPress={handleToggleSwitch}
-            renderActiveText={false}
-            renderInActiveText={false}
-            barHeight={20}
-            circleSize={18.67}
-            backgroundActive='#F5F5F5'
-            backgroundInactive='#111111'
-            circleActiveColor={COLORS.primaryOrange}
-            circleInActiveColor={COLORS.primaryOrange}
-            circleBorderWidth={0}
-          />
+          <View style={styles.shadow}>
+            <Switch
+              value={value}
+              onPress={handleToggleSwitch}
+              renderActiveText={false}
+              renderInActiveText={false}
+              barHeight={20}
+              circleSize={18.67}
+              backgroundActive='#111111'
+              backgroundInactive='#F5F5F5'
+              circleActiveColor={COLORS.primaryOrange}
+              circleInActiveColor={COLORS.primaryOrange}
+              circleBorderWidth={0}
+            />
+          </View>
         </ButtonView>
         <CloseView>
-          <Close name="close" onPress={() => handleCloseDrawer} style={styles.text} />
+          <Close name="close" onPress={handleCloseDrawer} style={styles.text} />
         </CloseView>
       </TopView>
       <ImageView>
@@ -147,16 +159,9 @@ const SideBar = ({ themeToggler, theme }) => {
 };
 
 const styles = StyleSheet.create({
-  shadow: {
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: -12 },
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    elevation: 5,
-  },
   drawerContent: {
     marginTop: -300,
-  }
+  },
 })
 
 export default SideBar;
