@@ -27,7 +27,7 @@ export default function DaysOfCoffe() {
     },
     nameMargin: {
       marginRight: 20
-    }
+    },
   });
 
   return (
@@ -35,7 +35,7 @@ export default function DaysOfCoffe() {
       <Container>
         <SafeAreaView>
           <View>
-            <Header title={"Dias do café"} />
+            <Header title={"Dias do café"} showSortIcon={false} />
           </View>
         </SafeAreaView>
         <EditView>
