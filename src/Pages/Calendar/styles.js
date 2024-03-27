@@ -82,7 +82,7 @@ export const Circle = styled.TouchableOpacity`
   border-radius: 50px;
 `
 export const ModalView = styled.View`
-   height: 350px;
+   height: 45%;
    background-color: #131313;
    border-top-left-radius: 20px;
    border-top-right-radius: 20px;

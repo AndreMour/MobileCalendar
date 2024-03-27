@@ -10,6 +10,8 @@ export const darkTheme = {
     orange: COLORS.primaryOrange,
     backgroundModalSort: COLORS.backgroundModal,
     backgroundWeek: COLORS.backgroundWeek,
+    backgroundModalTask: COLORS.thirdBlack,
+    backgroundTask: COLORS.blackTask,
   }
 }
 
@@ -22,5 +24,7 @@ export const lightTheme = {
     orange: COLORS.primaryOrange,
     backgroundModalSort: COLORS.primaryWhite,
     backgroundWeek: COLORS.primaryWhite,
+    backgroundModalTask: COLORS.secundaryWhite,
+    backgroundTask: COLORS.primaryWhite,
   }
 }

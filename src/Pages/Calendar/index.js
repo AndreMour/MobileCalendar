@@ -58,8 +58,6 @@ export default function Calendar(currentGroups) {
             }
         }
 
-        console.log('Todas sextas do mês: ', fridays)
-
         return fridays;
     }
 
@@ -82,14 +80,14 @@ export default function Calendar(currentGroups) {
                 </DescriptionView>
                 <AllDescriptionView>
                     <DotDescriptionView>
-                        <Dot name='dot-single' />
-                        <AllDescription>
+                        <Dot name='dot-single' style={styles.text} />
+                        <AllDescription style={styles.text}>
                             Realizar a limpeza das salas, varrendo a sala dos computadores, sala de reunião e sala do hardware.
                         </AllDescription>
                     </DotDescriptionView>
                     <DotDescriptionView>
-                        <Dot name='dot-single' />
-                        <AllDescription>
+                        <Dot name='dot-single' style={styles.text} />
+                        <AllDescription style={styles.text}>
                             Fazer a retirada dos lixos da sala dos computadores, sala de reunião, sala do hardware e estoque.
                         </AllDescription>
                     </DotDescriptionView>
@@ -99,6 +97,17 @@ export default function Calendar(currentGroups) {
     }
 
     const modalNoTask = () => {
+
+        const { colors } = useTheme();
+
+        const styles = StyleSheet.create({
+            text: {
+                color: colors.text,
+            },
+            background: {
+                backgroundColor: colors.background,
+            }
+        });
 
         return (
             <Modal
@@ -110,20 +119,20 @@ export default function Calendar(currentGroups) {
                     flex: 1,
                     flexDirection: 'column-reverse'
                 }}>
-                    <ModalView>
-                        <TopView>
+                    <ModalView style={styles.background}>
+                        <TopView >
                             <ActualDayView>
-                                <ActualDay>
+                                <ActualDay style={styles.text}>
                                     {DAYS_WEEK[new Date(year, month, selectedDay - 1).getDay()]}, {selectedDay} de {MONTHS[month]}
                                 </ActualDay>
                             </ActualDayView>
                             <CloseView>
-                                <Close name='close' onPress={() => setModalDayVisible(false)} />
+                                <Close name='close' onPress={() => setModalDayVisible(false)} style={styles.text} />
                             </CloseView>
                         </TopView>
                         <TextView>
-                            <Message>Nenhuma tarefa agendada</Message>
-                            <Message>:(</Message>
+                            <Message style={styles.text}>Nenhuma tarefa agendada</Message>
+                            <Message style={styles.text}>:(</Message>
                         </TextView>
                     </ModalView>
                 </TouchableOpacity>
@@ -141,6 +150,20 @@ export default function Calendar(currentGroups) {
 
     const modalCircle = (d, currentGroups) => {
 
+        const { colors } = useTheme();
+
+        const styles = StyleSheet.create({
+            text: {
+                color: colors.text,
+            },
+            background: {
+                backgroundColor: colors.backgroundModalTask,
+            },
+            backgroundTask: {
+                backgroundColor: colors.backgroundTask,
+            }
+        });
+
         return (
             <CircleView>
                 <Circle onPress={() => {
@@ -157,15 +180,15 @@ export default function Calendar(currentGroups) {
                             flex: 1,
                             flexDirection: 'column-reverse'
                         }}>
-                            <ModalView>
+                            <ModalView style={styles.background}>
                                 <TopView>
                                     <ActualDayView>
-                                        <ActualDay>
+                                        <ActualDay style={styles.text}>
                                             {DAYS_WEEK[new Date(year, month, selectedDay).getDay() - 1]}, {selectedDay} de {MONTHS[month]}
                                         </ActualDay>
                                     </ActualDayView>
                                     <CloseView>
-                                        <Close name='close' onPress={() => setModalVisible(false)} />
+                                        <Close name='close' onPress={() => setModalVisible(false)} style={styles.text} />
                                     </CloseView>
                                 </TopView>
                                 <AlignView>
@@ -176,10 +199,10 @@ export default function Calendar(currentGroups) {
                                     </HourView>
                                     <TaskView
                                         onPress={() => setIsTaskExpanded(!isTaskExpanded)}
-                                        style={isTaskExpanded ? { height: 235 } : {}}>
+                                        style={[isTaskExpanded ? { height: 235 } : {}, styles.backgroundTask]}>
                                         <HeaderView>
                                             <TitleView>
-                                                <TitleTask>
+                                                <TitleTask style={styles.text}>
                                                     Limpeza
                                                 </TitleTask>
                                             </TitleView>

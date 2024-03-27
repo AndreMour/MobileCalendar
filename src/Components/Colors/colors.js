@@ -8,4 +8,7 @@ export const COLORS = {
   buttonBlack: '#111111',
   backgroundModal: '#212121',
   backgroundWeek: '#1F1F1F',
+  thirdBlack: '#131313',
+  blackTask: '#2b2b2b',
+  textInput: '#939393',
 }
