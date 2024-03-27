@@ -11,7 +11,6 @@ import {
   SortButton, TitleButton, ModalView, SortInput, AlignLabel, LabelView
 } from './styles';
 import { useTheme } from '@react-navigation/native';
-import { COLORS } from '../Colors/colors';
 
 const transparent = 'rgba(0,0,0,0.5)';
 
@@ -51,8 +50,17 @@ const Header = ({ title, onPress, setFridayGroups, showSortIcon = true }) => {
   };
 
   const sortParticipantsIntoTeams = () => {
-    const numTeams = Math.ceil(participants.length / 2);
-    const teams = generateTeams(participants, numTeams);
+    const shuffledParticipants = [...participants].sort(() => Math.random() - 0.5);
+    const teams = [];
+
+    while (shuffledParticipants.length > 0) {
+      if (shuffledParticipants.length > 1) {
+        teams.push([shuffledParticipants.pop(), shuffledParticipants.pop()]);
+      } else {
+        teams.push([shuffledParticipants.pop()]);
+      }
+    }
+
     return teams;
   };
 
@@ -90,12 +98,17 @@ const Header = ({ title, onPress, setFridayGroups, showSortIcon = true }) => {
         animationType='slide'
         transparent={true}
       >
-        <TouchableOpacity onPress={() => setModalVisible(false)} style={{
+        <TouchableOpacity style={{
           flex: 1,
           backgroundColor: transparent,
           flexDirection: 'column-reverse'
-        }}>
-          <ModalView style={styles.backgroundModalSort}>
+        }}
+          onPress={() => setModalVisible(false)}>
+          <ModalView style={styles.backgroundModalSort}
+            onStartShouldSetResponder={() => true}
+            onResponderReject={(evt) => {
+              evt.stopPropagation();
+            }}>
             <CloseView>
               <TouchableOpacity onPress={() => setModalVisible(false)} >
                 <Close name='close' style={styles.text} />
