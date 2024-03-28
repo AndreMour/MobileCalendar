@@ -13,7 +13,7 @@ import {
 import Header from '../../Components/Header';
 import { useTheme } from '@react-navigation/native';
 
-export default function Calendar(currentGroups) {
+export default function Calendar() {
     const [isModalVisible, setModalVisible] = useState(false);
     const [isModalDayVisible, setModalDayVisible] = useState(false);
     const [fridayGroups, setFridayGroups] = useState([]);
@@ -70,7 +70,7 @@ export default function Calendar(currentGroups) {
         return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
     }
 
-    function description() {
+    const description = () => {
         return (
             <AlignBottomView>
                 <DescriptionView>
@@ -104,9 +104,9 @@ export default function Calendar(currentGroups) {
             text: {
                 color: colors.text,
             },
-            background: {
-                backgroundColor: colors.background,
-            }
+            backgroundModal: {
+                backgroundColor: colors.backgroundModalTask,
+            },
         });
 
         return (
@@ -119,17 +119,19 @@ export default function Calendar(currentGroups) {
                     flex: 1,
                     flexDirection: 'column-reverse'
                 }}>
-                    <ModalView style={styles.background}>
-                        <TopView >
-                            <ActualDayView>
-                                <ActualDay style={styles.text}>
-                                    {DAYS_WEEK[new Date(year, month, selectedDay - 1).getDay()]}, {selectedDay} de {MONTHS[month]}
-                                </ActualDay>
-                            </ActualDayView>
-                            <CloseView>
-                                <Close name='close' onPress={() => setModalDayVisible(false)} style={styles.text} />
-                            </CloseView>
-                        </TopView>
+                    <ModalView style={styles.backgroundModal}
+                        onStartShouldSetResponder={() => true}
+                        onResponderReject={(evt) => {
+                            evt.stopPropagation();
+                        }}>
+                        <ActualDayView>
+                            <ActualDay style={styles.text}>
+                                {DAYS_WEEK[new Date(year, month, selectedDay - 1).getDay()]}, {selectedDay} de {MONTHS[month]}
+                            </ActualDay>
+                        </ActualDayView>
+                        <CloseView>
+                            <Close name='close' onPress={() => setModalDayVisible(false)} style={styles.text} />
+                        </CloseView>
                         <TextView>
                             <Message style={styles.text}>Nenhuma tarefa agendada</Message>
                             <Message style={styles.text}>:(</Message>
@@ -139,14 +141,6 @@ export default function Calendar(currentGroups) {
             </Modal>
         )
     }
-
-    useEffect(() => {
-        setDay(currentDate.getDate());
-        setMonth(currentDate.getMonth());
-        setYear(currentDate.getFullYear());
-        setStartDay(getStartDayOfMonth(currentDate));
-        setAllFridays(getAllFridays(currentDate.getFullYear(), 0, 11));
-    }, [currentDate]);
 
     const modalCircle = (d, currentGroups) => {
 
@@ -180,17 +174,19 @@ export default function Calendar(currentGroups) {
                             flex: 1,
                             flexDirection: 'column-reverse'
                         }}>
-                            <ModalView style={styles.background}>
-                                <TopView>
-                                    <ActualDayView>
-                                        <ActualDay style={styles.text}>
-                                            {DAYS_WEEK[new Date(year, month, selectedDay).getDay() - 1]}, {selectedDay} de {MONTHS[month]}
-                                        </ActualDay>
-                                    </ActualDayView>
-                                    <CloseView>
-                                        <Close name='close' onPress={() => setModalVisible(false)} style={styles.text} />
-                                    </CloseView>
-                                </TopView>
+                            <ModalView style={styles.background}
+                                onStartShouldSetResponder={() => true}
+                                onResponderReject={(evt) => {
+                                    evt.stopPropagation();
+                                }}>
+                                <ActualDayView>
+                                    <ActualDay style={styles.text}>
+                                        {DAYS_WEEK[new Date(year, month, selectedDay).getDay() - 1]}, {selectedDay} de {MONTHS[month]}
+                                    </ActualDay>
+                                </ActualDayView>
+                                <CloseView>
+                                    <Close name='close' onPress={() => setModalVisible(false)} style={styles.text} />
+                                </CloseView>
                                 <AlignView>
                                     <HourView>
                                         <Hour>
@@ -255,13 +251,23 @@ export default function Calendar(currentGroups) {
         if (isFriday && fridayIndex >= 0) {
             const currentGroups = fridayGroups[fridayIndex];
 
-            if (currentGroups && currentGroups.length > 0) {
+            if (currentGroups) {
                 return modalCircle(d, currentGroups);
             }
         }
 
         return null;
     };
+
+
+    useEffect(() => {
+        setDay(currentDate.getDate());
+        setMonth(currentDate.getMonth());
+        setYear(currentDate.getFullYear());
+        setStartDay(getStartDayOfMonth(currentDate));
+        setAllFridays(getAllFridays(currentDate.getFullYear(), 0, 11));
+    }, [currentDate]);
+
 
     const { colors } = useTheme();
 
@@ -324,11 +330,12 @@ export default function Calendar(currentGroups) {
                                         empty={!d}
                                         dayOfWeek={dayOfWeek}
                                         onPress={() => {
-                                            if (isFriday && currentGroups) {
+                                            if (!isFriday && allFridays) {
                                                 setSelectedDay(d);
-                                            } else if (!isFriday) {
                                                 setModalDayVisible(true);
+                                            } else if (allFridays && !modalCircle) {
                                                 setSelectedDay(d);
+                                                setModalDayVisible(true);
                                             }
                                         }
                                         }

@@ -61,39 +61,31 @@ export const InputView = styled.View`
   padding-top: 25px;
 `
 export const LabelView = styled.View`
-  align-items: self-start;
-  width: ${width * .9}px;
-  margin-left: 53px;
+  width: 100%;
+  margin:30px 0 -30px 37px;
 `
 export const Label = styled.Text`
   font-family: 'Montserrat-Medium';
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 5px;
-`
-export const AlignLabel = styled.View`
-  width: ${width * .7}px;
-  align-items: center;
 `
 export const ButtonView = styled.View`
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
   flex-direction: row;
   width: ${width * .9}px;
-  margin-top: 2px;
 `
 export const SortInput = styled.TextInput`
   width: ${width * .7}px;
-  height: 32px;
+  height: 36px;
   font-family: 'Roboto';
   font-size: 14px;
   padding: 0 10px;
   border-radius: 5px 0px 0px 5px;
-  background-color: white;
 `
 export const Button = styled.TouchableOpacity`
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   background-color: #B73625;
   border-radius: 0 5px 5px 0;
   align-items: center;
@@ -104,9 +96,8 @@ export const AddIcon = styled(AntDesign)`
   color: #fff;
 `
 export const ListTitleView = styled.View`
-  width: ${width * .9}px;
-  margin-left: 46px;
-  margin-top: 30px;
+  width: 100%;
+  margin:30px 0 0 37px;
 `
 export const TitleList = styled.Text`
   font-family: 'Montserrat-Medium';
@@ -123,7 +114,6 @@ export const ListView = styled(ScrollView)`
   max-height:  ${width * .7}px;
 `
 export const CloseListView = styled.View`
-  align-items: center;
   flex-direction: row;
   justify-content: space-between;
   padding: 10px 45px 0 45px;
@@ -149,7 +139,7 @@ export const SortButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   width: ${width * .4}px;
-  height: 32px;
+  height: 36px;
   border-radius: 25px; 
   background-color: #B73625;
   margin-bottom: 20px;

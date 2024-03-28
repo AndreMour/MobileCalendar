@@ -12,6 +12,7 @@ export const darkTheme = {
     backgroundWeek: COLORS.backgroundWeek,
     backgroundModalTask: COLORS.thirdBlack,
     backgroundTask: COLORS.blackTask,
+    backgroundInput: COLORS.primaryWhite,
   }
 }
 
@@ -26,5 +27,6 @@ export const lightTheme = {
     backgroundWeek: COLORS.primaryWhite,
     backgroundModalTask: COLORS.secundaryWhite,
     backgroundTask: COLORS.primaryWhite,
+    backgroundInput: COLORS.secundaryWhite,
   }
 }

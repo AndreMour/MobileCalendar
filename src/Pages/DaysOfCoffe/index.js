@@ -28,6 +28,10 @@ export default function DaysOfCoffe() {
     nameMargin: {
       marginRight: 20
     },
+    border: {
+      borderTopWidth: 2,
+      borderTopColor: "#B73625"
+    }
   });
 
   return (
@@ -42,10 +46,7 @@ export default function DaysOfCoffe() {
           <EditIcon name='edit' />
         </EditView>
         <ContainerWeek>
-          <DivSeg style={[styles.shadow, {
-            borderTopWidth: 2,
-            borderTopColor: "#B73625"
-          }, styles.background]}>
+          <DivSeg style={[styles.shadow, styles.border, styles.background]}>
             <WeekDay style={styles.text}>seg</WeekDay>
             <DivNames>
               <Names style={[styles.nameMargin, styles.text]}>Caio</Names>

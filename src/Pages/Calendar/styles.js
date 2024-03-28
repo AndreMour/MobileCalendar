@@ -5,12 +5,9 @@ import Entypo from 'react-native-vector-icons/Entypo';
 
 export const Body = styled.View`
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  height: 100%; 
 `
 export const Months = styled.View` 
-  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -20,24 +17,17 @@ export const Months = styled.View`
 export const Month = styled.Text`
   font-family: 'Montserrat-SemiBold';
   font-size: 20px;
-  font-weight: 600;
 `
 export const ArrowIcon = styled(SimpleLineIcons)`
   font-size: 15px;
   padding: 0 45px 0 45px;
-  color: ${({ theme }) => theme.text};
 `
 export const DaysOfTheWeek = styled.View`
-  display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 100%;
-  height: 8vh;
   padding: 20px 0 15px 0;
 `
 export const DayWeek = styled.View`
-  display: flex;
-  align-items: flex-end;
   padding: 8px;
 `
 export const WeekDay = styled.Text`
@@ -46,16 +36,13 @@ export const WeekDay = styled.Text`
   color: #626262;
 `
 export const DaysOfTheMonth = styled.View`
-  display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   width: calc(100% - 20px);
   margin: 0 15px;
   padding-left: 20px;
   justify-content: space-between;
 `
 export const Day = styled.TouchableOpacity`
-  display: flex;
   justify-content: center;
   align-items: center;
   width: 20px;
@@ -64,15 +51,11 @@ export const Day = styled.TouchableOpacity`
 `;
 export const DayNumber = styled.Text`
   position: absolute;
-  display: flex;
-  flex-direction: row;
   font-size: 16px;
   font-weight: 500;
-  color: ${({ theme }) => theme.text};
   padding-bottom: 40px;
 `;
 export const CircleView = styled.View`
-  display: flex;
   padding-top: 30px;
 `
 export const Circle = styled.TouchableOpacity`
@@ -83,7 +66,6 @@ export const Circle = styled.TouchableOpacity`
 `
 export const ModalView = styled.View`
    height: 45%;
-   background-color: #131313;
    border-top-left-radius: 20px;
    border-top-right-radius: 20px;
 `
@@ -96,10 +78,6 @@ export const TextView = styled.View`
 export const Message = styled.Text`
   font-family: 'Montserrat-Light';
   font-size: 16px;
-  color: ${({ theme }) => theme.text};
-`
-export const TopView = styled.View`
-  flex-direction: row;
 `
 export const ActualDayView = styled.View`
   padding: 20px 0 0 20px;
@@ -107,7 +85,6 @@ export const ActualDayView = styled.View`
 export const ActualDay = styled.Text`
   font-family: 'Montserrat-SemiBold';
   font-size: 16px;
-  color: ${({ theme }) => theme.text};
 `
 export const CloseView = styled.View`
   position: absolute;
@@ -117,12 +94,10 @@ export const CloseView = styled.View`
 `
 export const Close = styled(AntDesign)`
   font-size: 20px;
-  color: ${({ theme }) => theme.text};
 `
 export const AlignView = styled.View`
   flex-direction: row;
   margin-top: 40px;
-  position: relative;
 `
 export const HourView = styled.View`
   margin: auto;
@@ -141,26 +116,22 @@ export const HeaderView = styled.View`
 export const TaskView = styled.TouchableOpacity`
   width: 297px;
   height: 60px;
-  background-color: #2B2B2B;
   border-radius: 5px;
   margin: 5px 15px 0 0;
 `
 export const TitleView = styled.View`
-  padding-left:20px;
+  padding-left: 20px;
   width: 148.5px;
 `
 export const TitleTask = styled.Text`
   font-family: 'Montserrat-Medium';
   font-size: 18px;
-  color: ${({ theme }) => theme.text};
 `
 export const GroupTimeView = styled.View`
   flex-direction: row;
   margin-right: 20px;
 `
 export const GroupView = styled.View`
-  display: flex;
-  flex-direction: row-reverse;
   width: 70px;
 `
 export const Group = styled.Text`
@@ -196,7 +167,6 @@ export const Description = styled.Text`
 export const Dot = styled(Entypo)`
   font-size: 10px;
   margin: 2px 2px 0 0;
-  color: white;
 `
 export const AllDescriptionView = styled.View`
   justify-content: space-around;
