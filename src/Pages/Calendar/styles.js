@@ -151,7 +151,7 @@ export const TitleView = styled.View`
 `
 export const TitleTask = styled.Text`
   font-family: 'Montserrat-Medium';
-  font-size: 16px;
+  font-size: 18px;
   color: ${({ theme }) => theme.text};
 `
 export const GroupTimeView = styled.View`
@@ -165,7 +165,7 @@ export const GroupView = styled.View`
 `
 export const Group = styled.Text`
   font-family: 'Roboto-Regular';
-  font-size: 10px;
+  font-size: 12px;
   color: #A3A3A3;
 `
 export const TimeView = styled.View`
@@ -190,7 +190,7 @@ export const DescriptionView = styled.View`
 `
 export const Description = styled.Text`
   font-family: 'Roboto-Regular';
-  font-size: 10px;
+  font-size: 12px;
   color: #A3A3A3;
 `
 export const Dot = styled(Entypo)`
@@ -202,10 +202,9 @@ export const AllDescriptionView = styled.View`
   justify-content: space-around;
   width: 130px;
   height: 142px;
-  margin: 20px 20px 0 20px;
+  margin: 30px 20px 0 20px;
 `
 export const AllDescription = styled.Text`
   font-family: 'Roboto-Regular';
-  font-size: 10px;
-  color: ${({ theme }) => theme.text};
+  font-size: 11px;
 `

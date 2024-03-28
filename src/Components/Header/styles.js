@@ -6,7 +6,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import { ScrollView } from "react-native";
 import { Dimensions } from 'react-native';
 
-const { height, width } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export const Container = styled.View`
   flex-direction: row;
@@ -53,7 +53,7 @@ export const TitleView = styled.View`
 `
 export const SortTitle = styled.Text`
   font-family: 'Montserrat-SemiBold';
-  font-size: 16px;
+  font-size: 24px;
   margin-top: 25px;
 `
 export const InputView = styled.View`
@@ -67,7 +67,7 @@ export const LabelView = styled.View`
 `
 export const Label = styled.Text`
   font-family: 'Montserrat-Medium';
-  font-size: 12px;
+  font-size: 18px;
   margin-bottom: 5px;
 `
 export const AlignLabel = styled.View`
@@ -86,16 +86,16 @@ export const SortInput = styled.TextInput`
   width: ${width * .7}px;
   height: 32px;
   font-family: 'Roboto';
-  font-size: 8px;
+  font-size: 14px;
   padding: 0 10px;
-  border-radius: 2px 0px 0px 2px;
+  border-radius: 5px 0px 0px 5px;
   background-color: white;
 `
 export const Button = styled.TouchableOpacity`
   width: 32px;
   height: 32px;
   background-color: #B73625;
-  border-radius: 0 2px 2px 0;
+  border-radius: 0 5px 5px 0;
   align-items: center;
   justify-content: center;
 `
@@ -110,10 +110,10 @@ export const ListTitleView = styled.View`
 `
 export const TitleList = styled.Text`
   font-family: 'Montserrat-Medium';
-  font-size: 12px;
+  font-size: 16px;
 `
 export const Dot = styled(Entypo)`
-  font-size: 12px;
+  font-size: 16px;
 `
 export const DeleteName = styled(AntDesign)`
   font-size: 20px;
@@ -137,7 +137,7 @@ export const DotView = styled.View`
 `
 export const NamesView = styled.Text`
   font-family: 'Roboto-Regular';
-  font-size: 12px;
+  font-size: 14px;
 `
 export const SortView = styled.View`
   position: absolute;
@@ -156,7 +156,7 @@ export const SortButton = styled.TouchableOpacity`
 `
 export const TitleButton = styled.Text`
   font-family: 'Roboto-Medium';
-  font-size: 12px;
+  font-size: 16px;
   color: #fff;
 `
 
