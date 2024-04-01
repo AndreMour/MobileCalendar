@@ -8,7 +8,8 @@ import {
   Button, ButtonView, AddIcon, ListTitleView,
   TitleList, ListView, CloseListView, NamesView,
   Dot, DeleteName, DotView, DotNameView, SortView,
-  SortButton, TitleButton, ModalView, SortInput, LabelView
+  SortButton, TitleButton, ModalView, SortInput, LabelView,
+  LabelInputView
 } from './styles';
 import { useTheme } from '@react-navigation/native';
 
@@ -121,24 +122,26 @@ const Header = ({ title, onPress, setFridayGroups, showSortIcon = true }) => {
             <TitleView>
               <SortTitle style={styles.text}>Sorteador de duplas</SortTitle>
             </TitleView>
-            <LabelView>
-              <Label style={styles.text}>Insira o nome</Label>
-            </LabelView>
-            <InputView>
-              <ButtonView>
-                <SortInput
-                  placeholder='Digite um nome'
-                  placeholderTextColor={'#939393'}
-                  onChangeText={handleChange}
-                  onSubmitEditing={handleAddParticipant}
-                  value={names}
-                  style={styles.textInput}
-                />
-                <Button onPress={handleAddParticipant}>
-                  <AddIcon name='addusergroup' />
-                </Button>
-              </ButtonView>
-            </InputView>
+            <LabelInputView>
+              <LabelView>
+                <Label style={styles.text}>Insira o nome</Label>
+              </LabelView>
+              <InputView>
+                <ButtonView>
+                  <SortInput
+                    placeholder='Digite um nome'
+                    placeholderTextColor={'#939393'}
+                    onChangeText={handleChange}
+                    onSubmitEditing={handleAddParticipant}
+                    value={names}
+                    style={styles.textInput}
+                  />
+                  <Button onPress={handleAddParticipant}>
+                    <AddIcon name='addusergroup' />
+                  </Button>
+                </ButtonView>
+              </InputView>
+            </LabelInputView>
             <ListTitleView>
               <TitleList style={styles.text}>Lista de participantes</TitleList>
             </ListTitleView>

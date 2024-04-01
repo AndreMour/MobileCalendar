@@ -58,8 +58,8 @@ const CustomDrawerHeader = ({ navigation, themeToggler }) => {
               renderInActiveText={false}
               barHeight={20}
               circleSize={18.67}
-              backgroundActive='#111111'
-              backgroundInactive='#F5F5F5'
+              backgroundActive='#F5F5F5'
+              backgroundInactive='#111111'
               circleActiveColor={COLORS.primaryOrange}
               circleInActiveColor={COLORS.primaryOrange}
               circleBorderWidth={0}
@@ -83,6 +83,12 @@ const CustomDrawerHeader = ({ navigation, themeToggler }) => {
 
 const SideBar = ({ themeToggler, theme }) => {
 
+  const styles = StyleSheet.create({
+    drawerContent: {
+      marginTop: -300,
+    },
+  })
+
   return (
     <NavigationContainer theme={theme === 'light' ? lightTheme : darkTheme}>
       <Drawer.Navigator
@@ -98,6 +104,7 @@ const SideBar = ({ themeToggler, theme }) => {
         screenOptions={() => ({
           drawerStyle: {
             width: 280,
+            backgroundColor: theme === 'light' ? '#fff' : '#1A1A1A',
           },
           headerShown: false,
           drawerActiveTintColor: "#313131",
@@ -113,7 +120,6 @@ const SideBar = ({ themeToggler, theme }) => {
                 color: colors.text,
               },
             });
-
             return {
               drawerLabel: "Calendário de limpeza",
               drawerIcon: () => (
@@ -138,7 +144,6 @@ const SideBar = ({ themeToggler, theme }) => {
                 color: colors.text,
               },
             });
-
             return {
               drawerLabel: "Dias do Café",
               drawerIcon: () => (
@@ -157,11 +162,5 @@ const SideBar = ({ themeToggler, theme }) => {
     </NavigationContainer >
   );
 };
-
-const styles = StyleSheet.create({
-  drawerContent: {
-    marginTop: -300,
-  },
-})
 
 export default SideBar;

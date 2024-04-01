@@ -56,18 +56,20 @@ export const SortTitle = styled.Text`
   font-size: 24px;
   margin-top: 25px;
 `
-export const InputView = styled.View`
-  margin: 0 auto;
-  padding-top: 25px;
-`
 export const LabelView = styled.View`
   width: 100%;
-  margin:30px 0 -30px 37px;
+  margin: 30px 0 -27px ${width * .10}px;
 `
 export const Label = styled.Text`
   font-family: 'Montserrat-Medium';
   font-size: 16px;
   margin-bottom: 5px;
+`
+export const InputView = styled.View`
+  margin: 0 auto;
+  padding-top: 25px;
+`
+export const LabelInputView = styled.View`
 `
 export const ButtonView = styled.View`
   align-items: center;
@@ -97,7 +99,7 @@ export const AddIcon = styled(AntDesign)`
 `
 export const ListTitleView = styled.View`
   width: 100%;
-  margin:30px 0 0 37px;
+  margin:30px 0 0 ${width * .10}px;
 `
 export const TitleList = styled.Text`
   font-family: 'Montserrat-Medium';
@@ -121,6 +123,8 @@ export const CloseListView = styled.View`
 export const DotNameView = styled.View`
   flex-direction: row;
   align-items: center;
+  max-width:  ${width * .6}px;
+  overflow: hidden;
 `
 export const DotView = styled.View`
   padding-right: 5px;
