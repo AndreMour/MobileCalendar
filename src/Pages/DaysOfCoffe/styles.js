@@ -7,7 +7,7 @@ export const Container = styled.View`
 export const EditView = styled.View`
   align-items: flex-end;
   width: 100%;
-  padding: 10px 20px 0 0;
+  padding: 10px 10px 0 0;
 `
 export const EditIcon = styled(Feather)`
   color: #A3A3A3;

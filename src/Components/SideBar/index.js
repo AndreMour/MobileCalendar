@@ -58,8 +58,8 @@ const CustomDrawerHeader = ({ navigation, themeToggler }) => {
               renderInActiveText={false}
               barHeight={20}
               circleSize={18.67}
-              backgroundActive='#F5F5F5'
-              backgroundInactive='#111111'
+              backgroundActive='#111111'
+              backgroundInactive='#f5f5f5'
               circleActiveColor={COLORS.primaryOrange}
               circleInActiveColor={COLORS.primaryOrange}
               circleBorderWidth={0}

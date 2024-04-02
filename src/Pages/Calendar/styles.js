@@ -120,7 +120,7 @@ export const TaskView = styled.TouchableOpacity`
   margin: 5px 15px 0 0;
 `
 export const TitleView = styled.View`
-  padding-left: 35px;
+  padding-left: 25px;
   width: 148.5px;
 `
 export const TitleTask = styled.Text`
@@ -129,10 +129,10 @@ export const TitleTask = styled.Text`
 `
 export const GroupTimeView = styled.View`
   flex-direction: row;
-  margin-right: 35px;
+  margin-right: 25px;
 `
 export const GroupView = styled.View`
-  width: 110px;
+  width: 95px;
   margin-right: -30px;
 `
 export const Group = styled.Text`

@@ -7,15 +7,14 @@ import {
     CloseView, Close, HourView, Hour, TaskView, AlignView,
     TitleTask, Group, GroupView, TitleView, HeaderView, Description,
     DescriptionView, AllDescriptionView, AllDescription, AlignBottomView,
-    Dot, DotDescriptionView, TimeView, TimeTask, TopView, ActualDayView,
-    ActualDay, TextView, Message, GroupTimeView
+    Dot, DotDescriptionView, TimeView, TimeTask, ActualDayView,
+    ActualDay, GroupTimeView
 } from './styles';
 import Header from '../../Components/Header';
 import { useTheme } from '@react-navigation/native';
 
 export default function Calendar() {
     const [isModalVisible, setModalVisible] = useState(false);
-    const [isModalDayVisible, setModalDayVisible] = useState(false);
     const [fridayGroups, setFridayGroups] = useState([]);
     const [isTaskExpanded, setIsTaskExpanded] = useState(false);
     const [selectedDay, setSelectedDay] = useState(null);
@@ -63,7 +62,7 @@ export default function Calendar() {
 
     function getStartDayOfMonth(date) {
         const startDate = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
-        return startDate === 0 ? 7 : startDate;
+        return startDate === 0 ? 0 : startDate;
     }
 
     function isLeapYear(year) {
@@ -93,52 +92,6 @@ export default function Calendar() {
                     </DotDescriptionView>
                 </AllDescriptionView>
             </AlignBottomView>
-        )
-    }
-
-    const modalNoTask = () => {
-
-        const { colors } = useTheme();
-
-        const styles = StyleSheet.create({
-            text: {
-                color: colors.text,
-            },
-            backgroundModal: {
-                backgroundColor: colors.backgroundModalTask,
-            },
-        });
-
-        return (
-            <Modal
-                visible={isModalDayVisible}
-                animationType='slide'
-                transparent={true}
-            >
-                <TouchableOpacity onPress={() => setModalDayVisible(false)} style={{
-                    flex: 1,
-                    flexDirection: 'column-reverse'
-                }}>
-                    <ModalView style={styles.backgroundModal}
-                        onStartShouldSetResponder={() => true}
-                        onResponderReject={(evt) => {
-                            evt.stopPropagation();
-                        }}>
-                        <ActualDayView>
-                            <ActualDay style={styles.text}>
-                                {DAYS_WEEK[new Date(year, month, selectedDay - 1).getDay()]}, {selectedDay} de {MONTHS[month]}
-                            </ActualDay>
-                        </ActualDayView>
-                        <CloseView>
-                            <Close name='close' onPress={() => setModalDayVisible(false)} style={styles.text} />
-                        </CloseView>
-                        <TextView>
-                            <Message style={styles.text}>Nenhuma tarefa agendada</Message>
-                            <Message style={styles.text}>:(</Message>
-                        </TextView>
-                    </ModalView>
-                </TouchableOpacity>
-            </Modal>
         )
     }
 
@@ -320,32 +273,22 @@ export default function Calendar() {
                                 const dayIndex = rowIndex * 7 + colIndex + 1 - startDay;
                                 const d = dayIndex > 0 && dayIndex <= DAYS[month] ? dayIndex : null;
                                 const dayOfWeek = (colIndex + startDay - 1) % 7;
-                                const isFriday = allFridays.some(friday => friday.getDate() === d && friday.getMonth() === month);
 
                                 return (
-                                    <Day
-                                        key={colIndex}
-                                        isToday={d === today.getDate()}
-                                        isSelected={d === day}
-                                        empty={!d}
-                                        dayOfWeek={dayOfWeek}
-                                        onPress={() => {
-                                            if (!isFriday && allFridays) {
-                                                setSelectedDay(d);
-                                                setModalDayVisible(true);
-                                            } else if (allFridays && !modalCircle) {
-                                                setSelectedDay(d);
-                                                setModalDayVisible(true);
-                                            }
-                                        }
-                                        }
-                                    >
-                                        {modalNoTask()}
-                                        <DayNumber style={styles.text}>
-                                            {d > 0 ? String(d).padStart(2, '0') : ''}
-                                        </DayNumber>
-                                        {displayFridays(d, month)}
-                                    </Day>
+                                    <View>
+                                        <Day
+                                            key={colIndex}
+                                            isToday={d === today.getDate()}
+                                            isSelected={d === day}
+                                            empty={!d}
+                                            dayOfWeek={dayOfWeek}
+                                        >
+                                            <DayNumber style={styles.text}>
+                                                {d > 0 ? String(d).padStart(2, '0') : ''}
+                                            </DayNumber>
+                                            {displayFridays(d, month)}
+                                        </Day>
+                                    </View>
                                 );
                             })}
                     </DaysOfTheMonth>

@@ -142,8 +142,8 @@ export const SortView = styled.View`
 export const SortButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
-  width: ${width * .4}px;
-  height: 36px;
+  width: 150px;
+  height: 40px;
   border-radius: 25px; 
   background-color: #B73625;
   margin-bottom: 20px;
