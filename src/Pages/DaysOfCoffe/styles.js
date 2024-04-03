@@ -7,7 +7,6 @@ export const Container = styled.View`
 export const EditView = styled.View`
   align-items: flex-end;
   width: 100%;
-  padding: 10px 10px 0 0;
 `
 export const EditIcon = styled(Feather)`
   color: #A3A3A3;
@@ -17,6 +16,21 @@ export const ContainerWeek = styled.View`
   flex-direction: row;
   justify-content: space-evenly;
   margin-bottom: 10px;
+`
+export const AlignView = styled.View`
+  display: grid;
+`
+export const DivSeg = styled.View`
+  width: 163px;
+  height: 125px;
+  align-items: center;
+  margin-top: 32px;
+`
+export const DivTer = styled.View`
+  width: 163px;
+  height: 125px;
+  align-items: center;
+  margin-top: 15px;
 `
 export const DivDay = styled.View`
   width: 163px;
@@ -34,8 +48,11 @@ export const DivSex = styled.View`
 export const WeekDay = styled.Text`
   font-family: 'Montserrat-Medium';
   font-size: 16px;
-  font-weight: 500;
   padding-top: 10px;
+`
+export const TextInput = styled.TextInput`
+  font-family: 'Roboto-Regular';
+  font-size: 16px;
 `
 export const DivNames = styled.View`
   flex-direction: row;
@@ -43,7 +60,6 @@ export const DivNames = styled.View`
 export const Names = styled.Text`
   font-family: 'Roboto-Regular';
   font-size: 16px;
-  font-weight: 400;
   flex-direction:row ;
   padding-top: 20px;
 `
