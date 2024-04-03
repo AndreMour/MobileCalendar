@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, SafeAreaView, View } from 'react-native';
 import {
   Container, ContainerWeek, DivDay,
-  DivNames, DivSeg, DivSex, EditIcon, EditView, Names, WeekDay
+  DivNames, DivSex, EditIcon, EditView,
+  Names, WeekDay
 } from './styles';
 import Header from '../../Components/Header';
 import { useTheme } from '@react-navigation/native';
 
 export default function DaysOfCoffe() {
+  const [currentDay, setCurrentDay] = useState(new Date().getDay());
+
+  useEffect(() => {
+    setCurrentDay(new Date().getDay());
+  }, []);
 
   const { colors } = useTheme();
 
@@ -46,14 +52,14 @@ export default function DaysOfCoffe() {
           <EditIcon name='edit' />
         </EditView>
         <ContainerWeek>
-          <DivSeg style={[styles.shadow, styles.border, styles.background]}>
+          <DivDay style={[styles.shadow, currentDay === 1 && styles.border, styles.background]}>
             <WeekDay style={styles.text}>seg</WeekDay>
             <DivNames>
               <Names style={[styles.nameMargin, styles.text]}>Caio</Names>
               <Names style={styles.text}> Gabriel</Names>
             </DivNames>
-          </DivSeg>
-          <DivDay style={[styles.shadow, styles.background]}>
+          </DivDay>
+          <DivDay style={[styles.shadow, currentDay === 2 && styles.border, styles.background]}>
             <WeekDay style={styles.text}>ter</WeekDay>
             <DivNames>
               <Names style={[styles.nameMargin, styles.text]}>Bruna </Names>
@@ -62,14 +68,14 @@ export default function DaysOfCoffe() {
           </DivDay>
         </ContainerWeek>
         <ContainerWeek>
-          <DivDay style={[styles.shadow, styles.background]}>
+          <DivDay style={[styles.shadow, currentDay === 3 && styles.border, styles.background]}>
             <WeekDay style={styles.text}>qua</WeekDay>
             <DivNames>
               <Names style={[styles.nameMargin, styles.text]}>Osmar</Names>
               <Names style={styles.text}>João</Names>
             </DivNames>
           </DivDay>
-          <DivDay style={[styles.shadow, styles.background]}>
+          <DivDay style={[styles.shadow, currentDay === 4 && styles.border, styles.background]}>
             <WeekDay style={styles.text}>qui</WeekDay>
             <DivNames>
               <Names style={[styles.nameMargin, styles.text]}>Wasch</Names>
@@ -77,7 +83,7 @@ export default function DaysOfCoffe() {
             </DivNames>
           </DivDay>
         </ContainerWeek>
-        <DivSex style={[styles.shadow, styles.background]}>
+        <DivSex style={[styles.shadow, currentDay === 5 && styles.border, styles.background]}>
           <WeekDay style={styles.text}>sex</WeekDay>
           <DivNames>
             <Names style={[styles.nameMargin, styles.text]}>Helegod </Names>

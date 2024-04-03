@@ -18,12 +18,6 @@ export const ContainerWeek = styled.View`
   justify-content: space-evenly;
   margin-bottom: 10px;
 `
-export const DivSeg = styled.View`
-  width: 163px;
-  height: 125px;
-  align-items: center;
-  margin-top: 15px;
-`
 export const DivDay = styled.View`
   width: 163px;
   height: 125px;
