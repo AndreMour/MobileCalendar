@@ -3,7 +3,8 @@ import { StyleSheet, SafeAreaView, View } from 'react-native';
 import {
   Container, ContainerWeek, DivDay,
   DivNames, DivSex, EditIcon, EditView,
-  Names, WeekDay, TextInput, AlignView, DivTer, DivSeg
+  Names, WeekDay, TextInput, AlignView,
+  DivTer, DivSeg, CheckIcon
 } from './styles';
 import Header from '../../Components/Header';
 import { useTheme } from '@react-navigation/native';
@@ -26,8 +27,8 @@ export default function DaysOfCoffe() {
     setCurrentDay(new Date().getDay());
   }, []);
 
-  const handleEditClick = () => {
-    setEditMode(!editMode);
+  const handleSaveNames = () => {
+    setEditMode(false);
   };
 
   const { colors } = useTheme();
@@ -48,6 +49,9 @@ export default function DaysOfCoffe() {
     },
     nameMargin: {
       marginRight: 20
+    },
+    inputMargin: {
+      marginRight: 12
     },
     border: {
       borderTopWidth: 2,
@@ -70,7 +74,7 @@ export default function DaysOfCoffe() {
               {editMode ? (
                 <>
                   <TextInput
-                    style={[styles.text]}
+                    style={[styles.text, styles.inputMargin]}
                     value={nameSeg1}
                     onChangeText={setNameSeg1}
                   />
@@ -90,7 +94,8 @@ export default function DaysOfCoffe() {
           </DivSeg>
           <AlignView>
             <EditView>
-              <EditIcon name='edit' onPress={handleEditClick} />
+              {!editMode ? <EditIcon name='edit' onPress={() => setEditMode(true)} />
+                : <CheckIcon name='check' onPress={() => setEditMode(false)} />}
             </EditView>
             <DivTer style={[styles.shadow, currentDay === 2 && styles.border, styles.background]}>
               <WeekDay style={styles.text}>ter</WeekDay>
@@ -98,7 +103,7 @@ export default function DaysOfCoffe() {
                 {editMode ? (
                   <>
                     <TextInput
-                      style={[styles.text]}
+                      style={[styles.text, styles.inputMargin]}
                       value={nameTer1}
                       onChangeText={setNameTer1}
                     />
@@ -125,7 +130,7 @@ export default function DaysOfCoffe() {
               {editMode ? (
                 <>
                   <TextInput
-                    style={[styles.text]}
+                    style={[styles.text, styles.inputMargin]}
                     value={nameQua1}
                     onChangeText={setNameQua1}
                   />
@@ -149,7 +154,7 @@ export default function DaysOfCoffe() {
               {editMode ? (
                 <>
                   <TextInput
-                    style={[styles.text]}
+                    style={[styles.text, styles.inputMargin]}
                     value={nameQui1}
                     onChangeText={setNameQui1}
                   />
@@ -174,7 +179,7 @@ export default function DaysOfCoffe() {
             {editMode ? (
               <>
                 <TextInput
-                  style={[styles.text]}
+                  style={[styles.text, styles.inputMargin]}
                   value={nameSex1}
                   onChangeText={setNameSex1}
                 />
