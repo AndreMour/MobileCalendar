@@ -11,11 +11,12 @@ export const EditView = styled.View`
 `
 export const EditIcon = styled(Feather)`
   color: #A3A3A3;
-  font-size: 16px;
+  font-size: 18px;
 `
 export const CheckIcon = styled(FontAwesome5)`
   color: green;
-  font-size: 15px;
+  font-size: 18px;
+  margin-bottom: -1px;
 `
 export const ContainerWeek = styled.View`
   flex-direction: row;
@@ -26,24 +27,28 @@ export const AlignView = styled.View`
   display: grid;
 `
 export const DivSeg = styled.View`
+  overflow: hidden;
   width: 163px;
   height: 125px;
   align-items: center;
-  margin-top: 32px;
+  margin-top: 33px;
 `
 export const DivTer = styled.View`
+  overflow: hidden;
   width: 163px;
   height: 125px;
   align-items: center;
   margin-top: 15px;
 `
 export const DivDay = styled.View`
+  overflow: hidden;
   width: 163px;
   height: 125px;
   align-items: center;
   margin-top: 15px;
 `
 export const DivSex = styled.View`
+  overflow: hidden;
   width: 163px;
   height: 125px;
   align-items: center;
@@ -58,6 +63,7 @@ export const WeekDay = styled.Text`
 export const TextInput = styled.TextInput`
   font-family: 'Roboto-Regular';
   font-size: 16px;
+  max-width: 80px;
   padding-top: 17px;
 `
 export const DivNames = styled.View`
