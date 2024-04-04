@@ -12,16 +12,13 @@ import { useTheme } from '@react-navigation/native';
 export default function DaysOfCoffe() {
   const [currentDay, setCurrentDay] = useState(new Date().getDay());
   const [editMode, setEditMode] = useState(false);
-  const [nameSeg1, setNameSeg1] = useState('Caio');
-  const [nameSeg2, setNameSeg2] = useState('Gabriel');
-  const [nameTer1, setNameTer1] = useState('Bruna');
-  const [nameTer2, setNameTer2] = useState('Leo');
-  const [nameQua1, setNameQua1] = useState('Osmar');
-  const [nameQua2, setNameQua2] = useState('João');
-  const [nameQui1, setNameQui1] = useState('Wasch');
-  const [nameQui2, setNameQui2] = useState('Braian');
-  const [nameSex1, setNameSex1] = useState('Helegod');
-  const [nameSex2, setNameSex2] = useState('Pedro K.');
+  const [names, setNames] = useState({
+    seg: { name1: 'Caio', name2: 'Gabriel' },
+    ter: { name1: 'Bruna', name2: 'Leo' },
+    qua: { name1: 'Osmar', name2: 'João' },
+    qui: { name1: 'Wasch', name2: 'Braian' },
+    sex: { name1: 'Helegod', name2: 'Pedro K.' }
+  });
 
   useEffect(() => {
     setCurrentDay(new Date().getDay());
@@ -75,19 +72,19 @@ export default function DaysOfCoffe() {
                 <>
                   <TextInput
                     style={[styles.text, styles.inputMargin]}
-                    value={nameSeg1}
-                    onChangeText={setNameSeg1}
+                    value={names.seg.name1}
+                    onChangeText={(text) => setNames({ ...names, seg: { ...names.seg, name1: text } })}
                   />
                   <TextInput
                     style={[styles.text]}
-                    value={nameSeg2}
-                    onChangeText={setNameSeg2}
+                    value={names.seg.name2}
+                    onChangeText={(text) => setNames({ ...names, seg: { ...names.seg, name2: text } })}
                   />
                 </>
               ) : (
                 <>
-                  <Names style={[styles.nameMargin, styles.text]}>{nameSeg1}</Names>
-                  <Names style={styles.text}>{nameSeg2}</Names>
+                  <Names style={[styles.nameMargin, styles.text]}>{names.seg.name1}</Names>
+                  <Names style={styles.text}>{names.seg.name2}</Names>
                 </>
               )}
             </DivNames>
@@ -104,19 +101,19 @@ export default function DaysOfCoffe() {
                   <>
                     <TextInput
                       style={[styles.text, styles.inputMargin]}
-                      value={nameTer1}
-                      onChangeText={setNameTer1}
+                      value={names.ter.name1}
+                      onChangeText={(text) => setNames({ ...names, ter: { ...names.ter, name1: text } })}
                     />
                     <TextInput
                       style={[styles.text]}
-                      value={nameTer2}
-                      onChangeText={setNameTer2}
+                      value={names.ter.name2}
+                      onChangeText={(text) => setNames({ ...names, ter: { ...names.ter, name2: text } })}
                     />
                   </>
                 ) : (
                   <>
-                    <Names style={[styles.nameMargin, styles.text]}>{nameTer1}</Names>
-                    <Names style={styles.text}>{nameTer2}</Names>
+                    <Names style={[styles.nameMargin, styles.text]}>{names.ter.name1}</Names>
+                    <Names style={styles.text}>{names.ter.name2}</Names>
                   </>
                 )}
               </DivNames>
@@ -131,19 +128,19 @@ export default function DaysOfCoffe() {
                 <>
                   <TextInput
                     style={[styles.text, styles.inputMargin]}
-                    value={nameQua1}
-                    onChangeText={setNameQua1}
+                    value={names.qua.name1}
+                    onChangeText={(text) => setNames({ ...names, qua: { ...names.qua, name1: text } })}
                   />
                   <TextInput
                     style={[styles.text]}
-                    value={nameQua2}
-                    onChangeText={setNameQua2}
+                    value={names.qua.name2}
+                    onChangeText={(text) => setNames({ ...names, qua: { ...names.qua, name2: text } })}
                   />
                 </>
               ) : (
                 <>
-                  <Names style={[styles.nameMargin, styles.text]}>{nameQua1}</Names>
-                  <Names style={styles.text}>{nameQua2}</Names>
+                  <Names style={[styles.nameMargin, styles.text]}>{names.qua.name1}</Names>
+                  <Names style={styles.text}>{names.qua.name2}</Names>
                 </>
               )}
             </DivNames>
@@ -155,19 +152,19 @@ export default function DaysOfCoffe() {
                 <>
                   <TextInput
                     style={[styles.text, styles.inputMargin]}
-                    value={nameQui1}
-                    onChangeText={setNameQui1}
+                    value={names.qui.name1}
+                    onChangeText={(text) => setNames({ ...names, qui: { ...names.qui, name1: text } })}
                   />
                   <TextInput
                     style={[styles.text]}
-                    value={nameQui2}
-                    onChangeText={setNameQui2}
+                    value={names.qui.name2}
+                    onChangeText={(text) => setNames({ ...names, qui: { ...names.qui, name2: text } })}
                   />
                 </>
               ) : (
                 <>
-                  <Names style={[styles.nameMargin, styles.text]}>{nameQui1}</Names>
-                  <Names style={styles.text}>{nameQui2}</Names>
+                  <Names style={[styles.nameMargin, styles.text]}>{names.qui.name1}</Names>
+                  <Names style={styles.text}>{names.qui.name2}</Names>
                 </>
               )}
             </DivNames>
@@ -180,19 +177,19 @@ export default function DaysOfCoffe() {
               <>
                 <TextInput
                   style={[styles.text, styles.inputMargin]}
-                  value={nameSex1}
-                  onChangeText={setNameSex1}
+                  value={names.sex.name1}
+                  onChangeText={(text) => setNames({ ...names, sex: { ...names.sex, name1: text } })}
                 />
                 <TextInput
                   style={[styles.text]}
-                  value={nameSex2}
-                  onChangeText={setNameSex2}
+                  value={names.sex.name2}
+                  onChangeText={(text) => setNames({ ...names, sex: { ...names.sex, name2: text } })}
                 />
               </>
             ) : (
               <>
-                <Names style={[styles.nameMargin, styles.text]}>{nameSex1}</Names>
-                <Names style={styles.text}>{nameSex2}</Names>
+                <Names style={[styles.nameMargin, styles.text]}>{names.sex.name1}</Names>
+                <Names style={styles.text}>{names.sex.name2}</Names>
               </>
             )}
           </DivNames>
