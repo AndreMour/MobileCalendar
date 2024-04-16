@@ -24,10 +24,6 @@ export default function DaysOfCoffe() {
     setCurrentDay(new Date().getDay());
   }, []);
 
-  const handleSaveNames = () => {
-    setEditMode(false);
-  };
-
   const { colors } = useTheme();
 
   const styles = StyleSheet.create({

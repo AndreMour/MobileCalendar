@@ -184,10 +184,11 @@ export default function Calendar() {
                 {
                     currentGroups && (
                         <Group>
-                            Duplas: {currentGroups.map((participant, idx) => (
-                                <React.Fragment key={idx}>
-                                    {idx > 0 && idx < currentGroups.length && <Text> e </Text>}
-                                    <Text>{participant}</Text>
+                            Duplas: {currentGroups.map((group, index) => (
+                                <React.Fragment key={index}>
+                                    <Text>{group.funcionario1}</Text>
+                                    {<Text> e </Text>}
+                                    <Text>{group.funcionario2}</Text>
                                 </React.Fragment>
                             ))}
                         </Group>
