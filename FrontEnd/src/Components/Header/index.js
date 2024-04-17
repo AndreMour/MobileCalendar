@@ -16,7 +16,7 @@ import axios from "axios";
 
 const transparent = 'rgba(0,0,0,0.5)';
 
-const Header = ({ title, onPress, setFridayGroups, showSortIcon = true }) => {
+const Header = ({ setIsLoading, title, onPress, setFridayGroups, showSortIcon = true }) => {
   const date = new Date();
   const today = new Date();
   const [isModalVisible, setModalVisible] = useState(false);

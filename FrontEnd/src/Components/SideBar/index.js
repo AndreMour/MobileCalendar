@@ -112,7 +112,7 @@ const SideBar = ({ themeToggler, theme }) => {
       >
         <Drawer.Screen
           name='Cleaning Calendar'
-          component={() => <Calendar />}
+          component={Calendar}
           options={() => {
             const { colors } = useTheme();
             const styles = StyleSheet.create({

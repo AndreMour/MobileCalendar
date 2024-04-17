@@ -25,6 +25,21 @@ export default function Calendar() {
     const [startDay, setStartDay] = useState(getStartDayOfMonth(currentDate));
     const [allFridays, setAllFridays] = useState([]);
     const [selectedFridayGroups, setSelectedFridayGroups] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const { colors } = useTheme();
+
+    const styles = StyleSheet.create({
+        text: {
+            color: colors.text,
+        },
+        background: {
+            backgroundColor: colors.backgroundModalTask,
+        },
+        backgroundTask: {
+            backgroundColor: colors.backgroundTask,
+        }
+    });
 
     const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -34,6 +49,14 @@ export default function Calendar() {
         'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
         'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
     ];
+
+    useEffect(() => {
+        setDay(currentDate.getDate());
+        setMonth(currentDate.getMonth());
+        setYear(currentDate.getFullYear());
+        setStartDay(getStartDayOfMonth(currentDate));
+        setAllFridays(getAllFridays(currentDate.getFullYear(), 0, 11));
+    }, [currentDate]);
 
     const today = new Date();
 
@@ -96,20 +119,6 @@ export default function Calendar() {
     }
 
     const modalCircle = (d, currentGroups) => {
-
-        const { colors } = useTheme();
-
-        const styles = StyleSheet.create({
-            text: {
-                color: colors.text,
-            },
-            background: {
-                backgroundColor: colors.backgroundModalTask,
-            },
-            backgroundTask: {
-                backgroundColor: colors.backgroundTask,
-            }
-        });
 
         return (
             <CircleView>
@@ -202,6 +211,10 @@ export default function Calendar() {
         const isFriday = allFridays.some(friday => friday.getDate() === d && friday.getMonth() === month);
         const fridayIndex = allFridays.findIndex(friday => friday.getDate() === d && friday.getMonth() === month);
 
+        if (isLoading) {
+            return null
+        }
+
         if (isFriday && fridayIndex >= 0) {
             const currentGroups = fridayGroups[fridayIndex];
 
@@ -213,29 +226,11 @@ export default function Calendar() {
         return null;
     };
 
-
-    useEffect(() => {
-        setDay(currentDate.getDate());
-        setMonth(currentDate.getMonth());
-        setYear(currentDate.getFullYear());
-        setStartDay(getStartDayOfMonth(currentDate));
-        setAllFridays(getAllFridays(currentDate.getFullYear(), 0, 11));
-    }, [currentDate]);
-
-
-    const { colors } = useTheme();
-
-    const styles = StyleSheet.create({
-        text: {
-            color: colors.text,
-        },
-    });
-
     return (
         <Body>
             <SafeAreaView>
                 <View>
-                    <Header title={"Calendário de Limpeza"} setFridayGroups={setFridayGroups} />
+                    <Header title={"Calendário de Limpeza"} setFridayGroups={setFridayGroups} setIsLoading={setIsLoading} />
                 </View>
             </SafeAreaView>
             <Months>
@@ -276,9 +271,8 @@ export default function Calendar() {
                                 const dayOfWeek = (colIndex + startDay - 1) % 7;
 
                                 return (
-                                    <View>
+                                    <View key={colIndex}>
                                         <Day
-                                            key={colIndex}
                                             isToday={d === today.getDate()}
                                             isSelected={d === day}
                                             empty={!d}
