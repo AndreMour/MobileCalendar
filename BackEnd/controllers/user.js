@@ -95,4 +95,3 @@ export const saveTeams = (req, res) => {
       return res.status(500).json("Ocorreu um erro ao salvar as duplas.");
     });
 };
-

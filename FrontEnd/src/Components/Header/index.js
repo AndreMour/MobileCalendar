@@ -1,6 +1,7 @@
 import { TouchableOpacity, Modal, StyleSheet, View } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
+import { useTheme } from '@react-navigation/native';
 import {
   CloseView, Close, Container, Hamburguer,
   Image, ImageView, SortIcon, SortTitle,
@@ -11,8 +12,8 @@ import {
   SortButton, TitleButton, ModalView, SortInput, LabelView,
   LabelInputView
 } from './styles';
-import { useTheme } from '@react-navigation/native';
 import axios from "axios";
+import Toast, { BaseToast } from 'react-native-toast-message';
 
 const transparent = 'rgba(0,0,0,0.5)';
 
@@ -24,7 +25,23 @@ const Header = ({ setIsLoading, title, onPress, setFridayGroups, showSortIcon = 
   const [names, setNames] = useState("");
   const [currentDate, setCurrentDate] = useState(date);
   const [allFridays, setAllFridays] = useState([]);
+  const [showToastOutsideModal, setShowToastOutsideModal] = useState(false);
   const navigation = useNavigation();
+
+  const { colors } = useTheme();
+
+  const styles = StyleSheet.create({
+    text: {
+      color: colors.text,
+    },
+    backgroundModalSort: {
+      backgroundColor: colors.backgroundModalSort,
+    },
+    textInput: {
+      color: 'black',
+      backgroundColor: colors.backgroundInput,
+    },
+  });
 
   function getAllFridays(year, startMonth = 0, endMonth = 11) {
     const fridays = [];
@@ -48,13 +65,72 @@ const Header = ({ setIsLoading, title, onPress, setFridayGroups, showSortIcon = 
     return fridays;
   };
 
+  const toastConfig = {
+    error: ({ text1, text2 }) => (
+      <BaseToast
+        {...{ text1, text2 }}
+        style={{ backgroundColor: colors.backgroundModalSort, borderLeftColor: 'red' }}
+        text1Style={{ color: colors.text }}
+        text2Style={{ color: '#909090' }}
+      />
+    ),
+    success: ({ text1, text2 }) => (
+      <BaseToast
+        {...{ text1, text2 }}
+        style={{ backgroundColor: colors.backgroundModalSort, borderLeftColor: 'green' }}
+        text1Style={{ color: colors.text }}
+        text2Style={{ color: '#909090' }}
+      />
+    ),
+  };
+
+  const showToastAdd = () => {
+    Toast.show({
+      type: "success",
+      text1: "Adicionado!",
+      text2: "Funcionário salvo com sucesso!",
+      autoHide: true,
+      visibilityTime: 2500,
+    })
+  }
+
+  const showToastDelete = () => {
+    Toast.show({
+      type: "success",
+      text1: "Deletado!",
+      text2: "Funcionário deletado com sucesso!",
+      autoHide: true,
+      visibilityTime: 2500,
+    })
+  }
+
+  const showToastSave = () => {
+    Toast.show({
+      type: "success",
+      text1: "Salvo!",
+      text2: "Duplas salvas com sucesso!",
+      autoHide: true,
+      visibilityTime: 2500,
+    })
+  }
+
+  const showToastVazio = () => {
+    Toast.show({
+      type: "error",
+      text1: "Insira o nome do Funcionário.",
+      text2: "Campo não pode ser vazio!",
+      autoHide: true,
+      visibilityTime: 2500,
+    })
+  }
+
   const handleChange = (text) => {
     setNames(text);
   };
 
   const getUsers = async () => {
     try {
-      const res = await axios.get("http://10.0.2.2:8080");
+      const res = await axios.get("http://192.168.18.133:8080");
       setUsers(res.data)
     } catch (error) {
       console.log('erro: ', error);
@@ -63,12 +139,13 @@ const Header = ({ setIsLoading, title, onPress, setFridayGroups, showSortIcon = 
 
   const handleAddParticipant = async (name) => {
     if (!name.trim()) {
-
+      showToastVazio()
       return;
     } else {
       try {
-        const res = await axios.post("http://10.0.2.2:8080/add", { name });
+        const res = await axios.post("http://192.168.18.133:8080/add", { name });
         setUsers([...users, res.data]);
+        showToastAdd();
         setNames('');
       } catch (error) {
         console.log('erro: ', error);
@@ -78,13 +155,13 @@ const Header = ({ setIsLoading, title, onPress, setFridayGroups, showSortIcon = 
 
   const handleDelete = async (id) => {
     await axios
-      .delete("http://10.0.2.2:8080/" + id)
+      .delete("http://192.168.18.133:8080/" + id)
       .then(({ data }) => {
         const newArray = users.filter((user) => user.id !== id);
-
+        showToastDelete()
         setUsers(newArray);
       })
-      .catch(({ data }) => toast.error(data));
+      .catch(({ data }) => console.log('erro: ', error));
 
     setOnEdit(null);
   };
@@ -96,10 +173,11 @@ const Header = ({ setIsLoading, title, onPress, setFridayGroups, showSortIcon = 
     });
 
     try {
-      const res = await axios.post("http://10.0.2.2:8080/saveTeams", { teams: teamsWithDate });
-
+      const res = await axios.post("http://192.168.18.133:8080/saveTeams", { teams: teamsWithDate });
+      setShowToastOutsideModal(true);
+      showToastSave()
     } catch (error) {
-
+      console.log('erro: ', error);
     }
   };
 
@@ -123,7 +201,7 @@ const Header = ({ setIsLoading, title, onPress, setFridayGroups, showSortIcon = 
 
   const getFridayGroups = async () => {
     try {
-      const res = await axios.get("http://10.0.2.2:8080/getTeams");
+      const res = await axios.get("http://192.168.18.133:8080/getTeams");
       const data = res.data.reduce((acc, item, index) => {
         const dayIndex = Math.floor(index / 1);
         if (!acc[dayIndex]) {
@@ -154,23 +232,13 @@ const Header = ({ setIsLoading, title, onPress, setFridayGroups, showSortIcon = 
     getFridayGroups();
   }, []);
 
-  const { colors } = useTheme();
-
-  const styles = StyleSheet.create({
-    text: {
-      color: colors.text,
-    },
-    backgroundModalSort: {
-      backgroundColor: colors.backgroundModalSort,
-    },
-    textInput: {
-      color: 'black',
-      backgroundColor: colors.backgroundInput,
-    },
-  });
-
   return (
     <>
+      {showToastOutsideModal && (
+        <View style={{ zIndex: 9999 }}>
+          <Toast config={toastConfig} />
+        </View>
+      )}
       <Container>
         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
           <Hamburguer name={"menu"} style={styles.text} />
@@ -195,6 +263,15 @@ const Header = ({ setIsLoading, title, onPress, setFridayGroups, showSortIcon = 
           flexDirection: 'column-reverse'
         }}
           onPress={() => setModalVisible(false)}>
+          <View style={{
+            position: 'absolute',
+            top: 0,
+            width: '100%',
+            height: '15%',
+            zIndex: 9999,
+          }}>
+            <Toast config={toastConfig} />
+          </View>
           <ModalView style={styles.backgroundModalSort}
             onStartShouldSetResponder={() => true}
             onResponderReject={(evt) => {
@@ -221,7 +298,7 @@ const Header = ({ setIsLoading, title, onPress, setFridayGroups, showSortIcon = 
                     placeholder='Digite um nome'
                     placeholderTextColor={'#939393'}
                     onChangeText={handleChange}
-                    onSubmitEditing={handleAddParticipant}
+                    onSubmitEditing={() => handleAddParticipant(names)}
                     value={names}
                     style={styles.textInput}
                   />
@@ -258,7 +335,7 @@ const Header = ({ setIsLoading, title, onPress, setFridayGroups, showSortIcon = 
             </SortView>
           </ModalView>
         </TouchableOpacity>
-      </Modal>
+      </Modal >
     </>
   )
 }

@@ -1,3 +1,9 @@
+## [0.1.15] - 2024-17-04
+
+### ADICIONADO
+
+-Adicionado um Banco de dados para armazenar os funcionários, e as duplas sorteadas em seus devidos dias.
+-Adicionado Toasts no app.
 
 ## [0.1.13] - 2024-03-04
 
