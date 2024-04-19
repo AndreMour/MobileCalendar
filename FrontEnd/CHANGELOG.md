@@ -1,21 +1,24 @@
-## [0.1.17] - 2024-19-04
+## [0.5.0] - 2024-19-04
 
 ### ADICIONADO
 
 -Adicionado ano atual acima do mês;
+-Adicionado o ícone do app;
 
 ### MODIFICADO
 
 -Removido a renderização das duplas em próximos anos;
+-Alterado o nome do app;
+-Arrumado o problema de rolagem da tela na lista de funcionários;
 
-## [0.1.15] - 2024-17-04
+## [0.4.0] - 2024-17-04
 
 ### ADICIONADO
 
 -Adicionado um Banco de dados para armazenar os funcionários, e as duplas sorteadas em seus devidos dias;
 -Adicionado Toasts no app;
 
-## [0.1.13] - 2024-03-04
+## [0.3.0] - 2024-03-04
 
 ### ADICIONADO
 
@@ -27,7 +30,7 @@
 -Alinhado o icone "EditIcon" com a View de "ter", para tonar mais responsivo;
 -Alterado o icone de salvar os nomes após clicar no "EditIcon";
 
-## [0.1.9] - 2024-02-04
+## [0.2.0] - 2024-02-04
 
 ### ADICIONADO
 

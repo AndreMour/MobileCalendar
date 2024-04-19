@@ -5,6 +5,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { ScrollView } from "react-native";
 import { Dimensions } from 'react-native';
+import { FlatList } from 'react-native';
+
 
 const { width } = Dimensions.get('window');
 
@@ -111,8 +113,8 @@ export const Dot = styled(Entypo)`
 export const DeleteName = styled(AntDesign)`
   font-size: 20px;
 `
-export const ListView = styled(ScrollView)`
-  margin-top: 10px;
+export const ListView = styled(FlatList).attrs(props => ({
+}))`
   max-height:  ${width * .7}px;
 `
 export const CloseListView = styled.View`

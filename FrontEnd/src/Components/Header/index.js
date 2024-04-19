@@ -311,23 +311,25 @@ const Header = ({ setIsLoading, title, onPress, setFridayGroups, showSortIcon = 
             <ListTitleView>
               <TitleList style={styles.text}>Lista de participantes</TitleList>
             </ListTitleView>
-            <ListView>
-              {users.map((user) => (
-                user.nome && (
-                  <CloseListView key={user.id}>
+            <ListView
+              data={users}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => (
+                item.nome && (
+                  <CloseListView key={item.id}>
                     <DotNameView>
                       <DotView>
                         <Dot name='dot-single' style={styles.text} />
                       </DotView>
                       <NamesView style={styles.text}>
-                        {user.nome}
+                        {item.nome}
                       </NamesView>
                     </DotNameView>
-                    <DeleteName name='close' onPress={() => handleDelete(user.id)} style={styles.text} />
+                    <DeleteName name='close' onPress={() => handleDelete(item.id)} style={styles.text} />
                   </CloseListView>
                 )
-              ))}
-            </ListView>
+              )}
+            />
             <SortView>
               <SortButton onPress={() => { setFridayGroups(sortParticipantsIntoTeams()), setModalVisible(false) }}>
                 <TitleButton>Sortear</TitleButton>
