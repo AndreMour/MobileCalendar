@@ -14,6 +14,16 @@ export const Months = styled.View`
   padding-top: 20px;
   width: 100%;
 `
+export const ViewYear = styled.View`
+  align-items: center;
+  width: 100%;
+  margin-bottom: -20px;
+`
+export const Year = styled.Text`
+  font-family: 'Montserrat-SemiBold';
+  font-size: 12px;
+  color: #909090;
+`
 export const Month = styled.Text`
   font-family: 'Montserrat-SemiBold';
   font-size: 20px;

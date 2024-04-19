@@ -1,16 +1,29 @@
+## [0.1.17] - 2024-19-04
+
+### ADICIONADO
+
+-Adicionado ano atual acima do mês;
+
+### MODIFICADO
+
+-Removido a renderização das duplas em próximos anos;
+
 ## [0.1.15] - 2024-17-04
 
 ### ADICIONADO
 
--Adicionado um Banco de dados para armazenar os funcionários, e as duplas sorteadas em seus devidos dias.
--Adicionado Toasts no app.
+-Adicionado um Banco de dados para armazenar os funcionários, e as duplas sorteadas em seus devidos dias;
+-Adicionado Toasts no app;
 
 ## [0.1.13] - 2024-03-04
+
+### ADICIONADO
+
+-Adicionado a funcionalidade de editar os nomes, ao clicar no "EditIcon";
 
 ### MODIFICADO
 
 -Alterado a borda dos dias do café, para renderizar quando for o dia atual;
--Adicionado a funcionalidade de editar os nomes, ao clicar no "EditIcon";
 -Alinhado o icone "EditIcon" com a View de "ter", para tonar mais responsivo;
 -Alterado o icone de salvar os nomes após clicar no "EditIcon";
 

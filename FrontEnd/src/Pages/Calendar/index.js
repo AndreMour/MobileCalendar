@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { View, SafeAreaView, Modal, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import {
-    Body, DayWeek, DaysOfTheWeek, Months, Month,
+    Body, DayWeek, DaysOfTheWeek, Months, Month, Year,
     ArrowIcon, DaysOfTheMonth, Day,
     DayNumber, WeekDay, Circle, CircleView, ModalView,
     CloseView, Close, HourView, Hour, TaskView, AlignView,
     TitleTask, Group, GroupView, TitleView, HeaderView, Description,
     DescriptionView, AllDescriptionView, AllDescription, AlignBottomView,
     Dot, DotDescriptionView, TimeView, TimeTask, ActualDayView,
-    ActualDay, GroupTimeView
+    ActualDay, GroupTimeView,
+    ViewYear
 } from './styles';
 import Header from '../../Components/Header';
 import { useTheme } from '@react-navigation/native';
@@ -208,8 +209,8 @@ export default function Calendar() {
     }
 
     const displayFridays = (d, month) => {
-        const isFriday = allFridays.some(friday => friday.getDate() === d && friday.getMonth() === month);
-        const fridayIndex = allFridays.findIndex(friday => friday.getDate() === d && friday.getMonth() === month);
+        const isFriday = allFridays.some(friday => friday.getDate() === d && friday.getMonth() === month && friday.getFullYear() === new Date().getFullYear());
+        const fridayIndex = allFridays.findIndex(friday => friday.getDate() === d && friday.getMonth() === month && friday.getFullYear() === new Date().getFullYear());
 
         if (isLoading) {
             return null
@@ -233,6 +234,9 @@ export default function Calendar() {
                     <Header title={"Calendário de Limpeza"} setFridayGroups={setFridayGroups} setIsLoading={setIsLoading} />
                 </View>
             </SafeAreaView>
+            <ViewYear>
+                <Year>{year}</Year>
+            </ViewYear>
             <Months>
                 <ArrowIcon
                     name="arrow-left"
