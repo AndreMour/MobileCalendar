@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "SmartlyCalendarApp.app"
-               BlueprintName = "SmartlyCalendarApp"
-               ReferencedContainer = "container:SmartlyCalendarApp.xcodeproj">
+               BuildableName = "SmartlyCalendar.app"
+               BlueprintName = "SmartlyCalendar"
+               ReferencedContainer = "container:SmartlyCalendar.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "SmartlyCalendarAppTests.xctest"
-               BlueprintName = "SmartlyCalendarAppTests"
-               ReferencedContainer = "container:SmartlyCalendarApp.xcodeproj">
+               BuildableName = "SmartlyCalendarTests.xctest"
+               BlueprintName = "SmartlyCalendarTests"
+               ReferencedContainer = "container:SmartlyCalendar.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "SmartlyCalendarApp.app"
-            BlueprintName = "SmartlyCalendarApp"
-            ReferencedContainer = "container:SmartlyCalendarApp.xcodeproj">
+            BuildableName = "SmartlyCalendar.app"
+            BlueprintName = "SmartlyCalendar"
+            ReferencedContainer = "container:SmartlyCalendar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "SmartlyCalendarApp.app"
-            BlueprintName = "SmartlyCalendarApp"
-            ReferencedContainer = "container:SmartlyCalendarApp.xcodeproj">
+            BuildableName = "SmartlyCalendar.app"
+            BlueprintName = "SmartlyCalendar"
+            ReferencedContainer = "container:SmartlyCalendar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
