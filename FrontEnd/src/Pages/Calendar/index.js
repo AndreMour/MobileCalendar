@@ -273,10 +273,17 @@ export default function Calendar() {
                                 const dayIndex = rowIndex * 7 + colIndex + 1 - startDay;
                                 const d = dayIndex > 0 && dayIndex <= DAYS[month] ? dayIndex : null;
                                 const dayOfWeek = (colIndex + startDay - 1) % 7;
+                                const fridayIndex = allFridays.findIndex(friday => friday.getDate() === d && friday.getMonth() === month && friday.getFullYear() === new Date().getFullYear());
+                                const currentGroups = fridayGroups[fridayIndex];
 
                                 return (
                                     <View key={colIndex}>
                                         <Day
+                                            onPress={() => {
+                                                setSelectedDay(d);
+                                                setModalVisible(true)
+                                                setSelectedFridayGroups(currentGroups);
+                                            }}
                                             isToday={d === today.getDate()}
                                             isSelected={d === day}
                                             empty={!d}

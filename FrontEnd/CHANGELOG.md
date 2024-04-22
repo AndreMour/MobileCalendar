@@ -1,3 +1,9 @@
+## [0.6.0] - 2024-22-04
+
+### ADICIONADO
+
+-Abrir o modal da task, quando clicado em qualquer lugar do dia;
+
 ## [0.5.0] - 2024-19-04
 
 ### ADICIONADO
@@ -24,7 +30,7 @@
 
 -Adicionado a funcionalidade de editar os nomes, ao clicar no "EditIcon";
 
-### MODIFICADO
+### MODIFICADO  
 
 -Alterado a borda dos dias do café, para renderizar quando for o dia atual;
 -Alinhado o icone "EditIcon" com a View de "ter", para tonar mais responsivo;
